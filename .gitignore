@@ -4,7 +4,8 @@ data/draft/*
 !data/draft/.keep
 vendor/*
 !vendor/simplicity-framework
-resource
+resource/*
+!resource/.keep
 .env
 
 ### Eclipse ###

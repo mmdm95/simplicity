@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PhpIncludePathManager">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/jenssegers/agent" />
+      <path value="$PROJECT_DIR$/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/vendor/phpoption/phpoption" />
+      <path value="$PROJECT_DIR$/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php72" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-grapheme" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-iconv" />
+      <path value="$PROJECT_DIR$/vendor/jaybizzle/crawler-detect" />
+      <path value="$PROJECT_DIR$/vendor/voku/portable-utf8" />
+      <path value="$PROJECT_DIR$/vendor/voku/portable-ascii" />
+      <path value="$PROJECT_DIR$/vendor/voku/anti-xss" />
+      <path value="$PROJECT_DIR$/vendor/simplicity-framework/Cache" />
+      <path value="$PROJECT_DIR$/vendor/simplicity-framework/Exceptions" />
+      <path value="$PROJECT_DIR$/vendor/simplicity-framework/Mvc" />
+      <path value="$PROJECT_DIR$/vendor/mmdm/sim-fa-sms" />
+      <path value="$PROJECT_DIR$/vendor/simplicity-framework/Abstracts" />
+      <path value="$PROJECT_DIR$/vendor/pecee/simple-router" />
+      <path value="$PROJECT_DIR$/vendor/vlucas/phpdotenv" />
+      <path value="$PROJECT_DIR$/vendor/simplicity-framework/Database" />
+      <path value="$PROJECT_DIR$/vendor/mmdm/sim-logger" />
+      <path value="$PROJECT_DIR$/vendor/simplicity-framework/Utils" />
+      <path value="$PROJECT_DIR$/vendor/mmdm/sim-cookie" />
+      <path value="$PROJECT_DIR$/vendor/simplicity-framework/Authentication" />
+      <path value="$PROJECT_DIR$/vendor/mmdm/sim-benchmark" />
+      <path value="$PROJECT_DIR$/vendor/simplicity-framework/Traits" />
+      <path value="$PROJECT_DIR$/vendor/mmdm/sim-i18n" />
+      <path value="$PROJECT_DIR$/vendor/simplicity-framework/Interfaces" />
+      <path value="$PROJECT_DIR$/vendor/mmdm/sim-crypt" />
+      <path value="$PROJECT_DIR$/vendor/php-di/phpdoc-reader" />
+      <path value="$PROJECT_DIR$/vendor/simplicity-framework/Functions" />
+      <path value="$PROJECT_DIR$/vendor/mmdm/sim-fa-payment" />
+      <path value="$PROJECT_DIR$/vendor/php-di/invoker" />
+      <path value="$PROJECT_DIR$/vendor/simplicity-framework/ConfigManager" />
+      <path value="$PROJECT_DIR$/vendor/mmdm/sim-container" />
+      <path value="$PROJECT_DIR$/vendor/simplicity-framework/Loader" />
+      <path value="$PROJECT_DIR$/vendor/mmdm/sim-event-dispatcher" />
+      <path value="$PROJECT_DIR$/vendor/php-di/php-di" />
+      <path value="$PROJECT_DIR$/vendor/simplicity-framework/Router" />
+      <path value="$PROJECT_DIR$/vendor/mmdm/sim-form" />
+      <path value="$PROJECT_DIR$/vendor/mmdm/sim-captcha" />
+      <path value="$PROJECT_DIR$/vendor/simplicity-framework/PathManager" />
+      <path value="$PROJECT_DIR$/vendor/mmdm/sim-csrf" />
+      <path value="$PROJECT_DIR$/vendor/mmdm/sim-session" />
+      <path value="$PROJECT_DIR$/vendor/opis/closure" />
+      <path value="$PROJECT_DIR$/vendor/graham-campbell/result-type" />
+      <path value="$PROJECT_DIR$/vendor/aura/sqlquery" />
+      <path value="$PROJECT_DIR$/vendor/aura/sql" />
+      <path value="$PROJECT_DIR$/vendor/mobiledetect/mobiledetectlib" />
+    </include_path>
+  </component>
+  <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />
+</project>
