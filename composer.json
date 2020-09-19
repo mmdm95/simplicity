@@ -31,7 +31,7 @@
     "mmdm/sim-cookie": "^1.0",
     "mmdm/sim-session": "^1.0",
     "mmdm/sim-captcha": "^1.0",
-    "mmdm/sim-csrf": "~1.0",
+    "mmdm/sim-csrf": "^1.0",
     "mmdm/sim-logger": "^1.0",
     "mmdm/sim-benchmark": "^1.0",
     "mmdm/sim-event-dispatcher": "^1.0",
