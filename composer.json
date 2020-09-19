@@ -1,0 +1,47 @@
+{
+  "name": "mmdm/simplicity-framework",
+  "description": "A simple yet nice PHP framework",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "MMDM",
+      "email": "mmdehghan95@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/",
+      "Sim\\Core\\": "core/",
+      "Sim\\": "vendor/simplicity-framework/"
+    }
+  },
+  "require": {
+    "php": ">=7.2",
+    "ext-soap": "*",
+    "ext-curl": "*",
+    "ext-json": "*",
+    "ext-gd": "*",
+    "ext-ctype": "*",
+    "ext-openssl": "*",
+    "ext-pdo": "*",
+    "ext-mbstring": "*",
+    "jenssegers/agent": "^2.6",
+    "mmdm/sim-container": "^1.2",
+    "mmdm/sim-i18n": "^1.0",
+    "mmdm/sim-cookie": "^1.0",
+    "mmdm/sim-session": "^1.0",
+    "mmdm/sim-captcha": "^1.0",
+    "mmdm/sim-csrf": "~1.0",
+    "mmdm/sim-logger": "^1.0",
+    "mmdm/sim-benchmark": "^1.0",
+    "mmdm/sim-event-dispatcher": "^1.0",
+    "mmdm/sim-fa-sms": "^0.0",
+    "mmdm/sim-fa-payment": "^0.0",
+    "mmdm/sim-form": "^0.0",
+    "aura/sql": "^3.0",
+    "aura/sqlquery": "^2.7",
+    "pecee/simple-router": "4.2.0.6",
+    "vlucas/phpdotenv": "^5.1",
+    "voku/anti-xss": "^4.1"
+  }
+}
