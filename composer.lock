@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2be956cefc8299ba16c3daf81bdf17dd",
+    "content-hash": "cc3579df7e5512ef8203bf7f9d30eab2",
     "packages": [
         {
             "name": "aura/sql",
@@ -632,6 +632,44 @@
             ],
             "description": "A simple yet nice SMS library",
             "time": "2020-09-17T06:01:34+00:00"
+        },
+        {
+            "name": "mmdm/sim-file",
+            "version": "v0.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mmdm95/sim-file.git",
+                "reference": "ae6ed2a6a3132527e754479b05e9e0151e26a983"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mmdm95/sim-file/zipball/ae6ed2a6a3132527e754479b05e9e0151e26a983",
+                "reference": "ae6ed2a6a3132527e754479b05e9e0151e26a983",
+                "shasum": ""
+            },
+            "require": {
+                "ext-fileinfo": "*",
+                "ext-mbstring": "*",
+                "php": ">=7.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Sim\\File\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "MMDM",
+                    "email": "mmdehghan95@gmail.com"
+                }
+            ],
+            "description": "A simple yet nice file management library",
+            "time": "2020-09-24T11:54:23+00:00"
         },
         {
             "name": "mmdm/sim-form",
@@ -1950,5 +1988,6 @@
         "ext-pdo": "*",
         "ext-mbstring": "*"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }

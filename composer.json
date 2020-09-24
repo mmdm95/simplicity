@@ -42,6 +42,7 @@
     "aura/sqlquery": "^2.7",
     "pecee/simple-router": "4.2.0.6",
     "vlucas/phpdotenv": "^5.1",
-    "voku/anti-xss": "^4.1"
+    "voku/anti-xss": "^4.1",
+    "mmdm/sim-file": "^0.1.1"
   }
 }
