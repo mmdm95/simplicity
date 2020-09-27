@@ -105,7 +105,7 @@ class Route implements IInitialize
             /**
              * Restful resource (see IResourceController interface for available methods)
              */
-//            Router::resource('/rest', ControllerResource::class);
+            Router::resource('/rest', ResourceController::class);
         });
     }
 }
