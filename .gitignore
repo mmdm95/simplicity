@@ -193,4 +193,4 @@ resource/*
 !resource/.keep
 .env
 node_modules
-!public/build
+!public/build/manifest.json
