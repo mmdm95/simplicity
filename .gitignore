@@ -1,14 +1,3 @@
-data/cache/*
-!data/cache/.keep
-data/draft/*
-!data/draft/.keep
-vendor/*
-!vendor/simplicity-framework
-resource/*
-!resource/.keep
-.env
-node_modules
-
 ### Eclipse ###
 .metadata
 bin/
@@ -192,3 +181,16 @@ fabric.properties
 .idea/$CACHE_FILE$
 
 # End of https://www.toptal.com/developers/gitignore/api/phpstorm
+
+# Simplicity gitignore
+data/cache/*
+!data/cache/.keep
+data/draft/*
+!data/draft/.keep
+vendor/*
+!vendor/simplicity-framework
+resource/*
+!resource/.keep
+.env
+node_modules
+!public/build
