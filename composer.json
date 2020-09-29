@@ -38,11 +38,12 @@
     "mmdm/sim-fa-sms": "^0.0",
     "mmdm/sim-fa-payment": "^0.0",
     "mmdm/sim-form": "^0.0",
+    "mmdm/sim-file": "^0.1.1",
     "aura/sql": "^3.0",
     "aura/sqlquery": "^2.7",
     "pecee/simple-router": "4.2.0.6",
     "vlucas/phpdotenv": "^5.1",
     "voku/anti-xss": "^4.1",
-    "mmdm/sim-file": "^0.1.1"
+    "symfony/console": "^5.1"
   }
 }
