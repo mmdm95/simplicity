@@ -10,19 +10,19 @@ interface IConfig extends ISetterGetter
     /**
      * Store a specific array as config
      *
-     * @param $alias
+     * @param string $alias
      * @param array $value
      * @return static
      */
-    public function setAsConfig($alias, array $value);
+    public function setAsConfig(string $alias, array $value);
 
     /**
      * Load a config without storing it
      *
-     * @param $path
+     * @param string $path
      * @return array
      */
-    public function getDirectly($path): array;
+    public function getDirectly(string $path): array;
 
     /**
      * Allow to check for config existence
@@ -30,5 +30,5 @@ interface IConfig extends ISetterGetter
      * @param bool $answer
      * @return static
      */
-    public function checkConfigExistence($answer = true);
+    public function checkConfigExistence(bool $answer = true);
 }

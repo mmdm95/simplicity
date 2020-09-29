@@ -10,18 +10,18 @@ interface IPath extends ISetterGetter
     /**
      * Check if a path is registered to path manager
      *
-     * @param $alias
+     * @param string $alias
      * @return bool
      */
-    public function has($alias): bool;
+    public function has(string $alias): bool;
 
     /**
      * Check if a path is exists
      *
-     * @param $path
+     * @param string $path
      * @return bool
      */
-    public function exists($path): bool;
+    public function exists(string $path): bool;
 
     /**
      * Allow to check for path existence
@@ -29,7 +29,7 @@ interface IPath extends ISetterGetter
      * @param bool $answer
      * @return IPath
      */
-    public function checkPathExistence($answer = true): IPath;
+    public function checkPathExistence(bool $answer = true): IPath;
 
     /**
      * Replace slashes and backslashes with Directory Separator or not
@@ -37,7 +37,7 @@ interface IPath extends ISetterGetter
      * @param bool $answer
      * @return IPath
      */
-    public function replaceSlashes($answer = true): IPath;
+    public function replaceSlashes(bool $answer = true): IPath;
 
     /**
      * Should add trailing slash or not
@@ -46,5 +46,5 @@ interface IPath extends ISetterGetter
      * @param bool $answer
      * @return IPath
      */
-    public function addTrailingSlash($answer = true): IPath;
+    public function addTrailingSlash(bool $answer = true): IPath;
 }
