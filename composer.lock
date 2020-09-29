@@ -635,16 +635,16 @@
         },
         {
             "name": "mmdm/sim-file",
-            "version": "v0.1.3",
+            "version": "v0.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mmdm95/sim-file.git",
-                "reference": "8f6cce225610ae4219ae4a6302a64ecf72f7b22a"
+                "reference": "7854916ba8b501cf1c898a0e66e140aaaaa6ee8b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mmdm95/sim-file/zipball/8f6cce225610ae4219ae4a6302a64ecf72f7b22a",
-                "reference": "8f6cce225610ae4219ae4a6302a64ecf72f7b22a",
+                "url": "https://api.github.com/repos/mmdm95/sim-file/zipball/7854916ba8b501cf1c898a0e66e140aaaaa6ee8b",
+                "reference": "7854916ba8b501cf1c898a0e66e140aaaaa6ee8b",
                 "shasum": ""
             },
             "require": {
@@ -669,7 +669,7 @@
                 }
             ],
             "description": "A simple yet nice file management library",
-            "time": "2020-09-29T13:00:41+00:00"
+            "time": "2020-09-29T21:55:26+00:00"
         },
         {
             "name": "mmdm/sim-form",
