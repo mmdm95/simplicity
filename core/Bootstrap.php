@@ -58,7 +58,13 @@ class Bootstrap
     protected $config;
 
     /**
+     * @var bool $route_needed
+     */
+    protected $route_needed = true;
+
+    /**
      * Bootstrap constructor.
+     * @param bool $route_needed
      * @throws IFileNotExistsException
      * @throws IInvalidVariableNameException
      * @throws MethodNotFoundException
@@ -71,12 +77,16 @@ class Bootstrap
      * @throws \Pecee\SimpleRouter\Exceptions\NotFoundHttpException
      * @throws \ReflectionException
      */
-    public function __construct()
+    public function __construct(bool $route_needed = true)
     {
+        $this->route_needed = $route_needed;
+        //-----
         $this->defineConstants();
         $this->init();
-        $this->customErrorHandler();
-        $this->defineRoute();
+        if ($route_needed) {
+            $this->customErrorHandler();
+            $this->defineRoute();
+        }
     }
 
     /**
@@ -113,8 +123,11 @@ class Bootstrap
         // Call needed functionality
         $this->defineConfig();
         $this->definePath();
-        $this->defineEvents();
-        $this->defineContainer();
+        // only for none route (without CLI) cases
+        if ($this->route_needed) {
+            $this->defineEvents();
+            $this->defineContainer();
+        }
 
         // Load .env variables
         $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
@@ -271,26 +284,35 @@ class Bootstrap
     protected function defineContainer()
     {
         // Define container's object(s)
+
         \container()->set(Crypt::class, function () {
             return new Crypt($this->config->get('security.main_key'),
                 $this->config->get('security.assured_key'));
         });
+
         \container()->set(Session::class, function (Container $c) {
             return new Session($c->get(Crypt::class));
         });
+
         \container()->set(Cookie::class, function (Container $c) {
             return new Cookie($c->get(Crypt::class));
         });
+
         \container()->set(ErrorHandler::class, function (Container $c) {
             return new ErrorHandler($c->get(ConfigManager::class), $c->get(Loader::class), $c->get(Logger::class));
         });
+
         \container()->set(Translate::class, function () {
             $translate = new Translate();
+            $translateConfig = config()->get('i18n');
+            if (!is_null($translateConfig)) {
+                /** @var array $translateConfig */
+                $translate->setTranslateDir($translateConfig['language_dir'] ?? '')
+                    ->setLocale($translateConfig['language'] ?? '');
 
-            $translate->setTranslateDir((string)config()->get('i18n.language_dir'))->setLocale((string)config()->get('i18n.language'));
-
-            if ((bool)config()->get('i18n.is_rtl') === true) {
-                $translate->itIsRTL();
+                if ((bool)config()->get('i18n.is_rtl') === true) {
+                    $translate->itIsRTL();
+                }
             }
 
             return $translate;
@@ -316,6 +338,7 @@ class Bootstrap
      * @throws \Pecee\SimpleRouter\Exceptions\NotFoundHttpException
      * @throws \ReflectionException
      * @throws MethodNotFoundException
+     * @throws \Exception
      */
     protected function defineRoute()
     {
