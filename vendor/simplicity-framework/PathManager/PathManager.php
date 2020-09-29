@@ -44,7 +44,7 @@ class PathManager implements IPath
     {
         $this->isValidAliasName($alias);
         $this->doCheckExistence($path);
-        self::$path[$alias] = $this->doAddEndSlash(false === $this->replace_slashes ? $path : $this->doReplaceSlashes($path));
+        self::$path[$alias] = $path;
         return $this;
     }
 
@@ -63,20 +63,23 @@ class PathManager implements IPath
         if (!$this->has($alias)) {
             throw new PathNotRegisteredException($alias);
         }
+
         $this->doCheckExistence(self::$path[$alias]);
         $path = self::$path[$alias];
-        if ($this->trailing_slash) $path .= '/';
-        $path = $this->doAddEndSlash(false === $this->replace_slashes ? $path : $this->doReplaceSlashes($path));
+
+        if ($this->trailing_slash) {
+            $path = $this->doAddEndSlash(false === $this->replace_slashes ? $path : $this->doReplaceSlashes($path));
+        }
         return $path;
     }
 
     /**
      * Check if a path is registered to path manager
      *
-     * @param $alias
+     * @param string $alias
      * @return bool
      */
-    public function has($alias): bool
+    public function has(string $alias): bool
     {
         return isset(self::$path[$alias]);
     }
@@ -84,10 +87,10 @@ class PathManager implements IPath
     /**
      * Check if a path is exists
      *
-     * @param $path
+     * @param string $path
      * @return bool
      */
-    public function exists($path): bool
+    public function exists(string $path): bool
     {
         return file_exists($path);
     }
@@ -98,9 +101,9 @@ class PathManager implements IPath
      * @param bool $answer
      * @return IPath
      */
-    public function checkPathExistence($answer = true): IPath
+    public function checkPathExistence(bool $answer = true): IPath
     {
-        $this->check_path_existence = (bool)$answer;
+        $this->check_path_existence = $answer;
         return $this;
     }
 
@@ -110,9 +113,9 @@ class PathManager implements IPath
      * @param bool $answer
      * @return IPath
      */
-    public function replaceSlashes($answer = true): IPath
+    public function replaceSlashes(bool $answer = true): IPath
     {
-        $this->replace_slashes = (bool)$answer;
+        $this->replace_slashes = $answer;
         return $this;
     }
 
@@ -123,17 +126,17 @@ class PathManager implements IPath
      * @param bool $answer
      * @return IPath
      */
-    public function addTrailingSlash($answer = true): IPath
+    public function addTrailingSlash(bool $answer = true): IPath
     {
-        $this->trailing_slash = (bool)$answer;
+        $this->trailing_slash = $answer;
         return $this;
     }
 
     /**
-     * @param $alias
+     * @param string $alias
      * @throws InvalidAliasNameException
      */
-    protected function isValidAliasName($alias): void
+    protected function isValidAliasName(string $alias): void
     {
         if (!preg_match('/[a-zA-Z_\/][a-zA-Z0-9_\/]*/', $alias)) {
             throw new InvalidAliasNameException($alias);
@@ -141,10 +144,10 @@ class PathManager implements IPath
     }
 
     /**
-     * @param $path
+     * @param string $path
      * @throws FileNotExistsException
      */
-    protected function doCheckExistence($path)
+    protected function doCheckExistence(string $path)
     {
         if ($this->check_path_existence && !$this->exists($path)) {
             throw new FileNotExistsException($path);
@@ -154,10 +157,10 @@ class PathManager implements IPath
     /**
      * Replace slashes and backslashes with Directory Separator
      *
-     * @param $path
+     * @param string $path
      * @return string
      */
-    protected function doReplaceSlashes($path): string
+    protected function doReplaceSlashes(string $path): string
     {
         return str_replace('\\', DIRECTORY_SEPARATOR, str_replace('/', DIRECTORY_SEPARATOR, $path));
     }
@@ -165,10 +168,10 @@ class PathManager implements IPath
     /**
      * Add a directory separator end of path string
      *
-     * @param $path
+     * @param string $path
      * @return string
      */
-    protected function doAddEndSlash($path): string
+    protected function doAddEndSlash(string $path): string
     {
         return trim($path, '/\\') . DIRECTORY_SEPARATOR;
     }

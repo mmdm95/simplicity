@@ -52,12 +52,12 @@ trait TraitConfigManager
     /**
      * Store a specific array as config
      *
-     * @param $alias
+     * @param string $alias
      * @param array $value
      * @return static
      * @throws IInvalidVariableNameException
      */
-    public function setAsConfig($alias, array $value)
+    public function setAsConfig(string $alias, array $value)
     {
         $this->isValidAliasName($alias);
         self::$loaded_configs[$alias] = $value;
@@ -102,11 +102,11 @@ trait TraitConfigManager
     /**
      * Load a config without storing it
      *
-     * @param $path
+     * @param string $path
      * @return array
      * @throws IFileNotExistsException
      */
-    public function getDirectly($path): array
+    public function getDirectly(string $path): array
     {
         return LoaderSingleton::getInstance()->returnLoadedFile(true)->load_include($path, ILoader::EXT_PHP);
     }
@@ -117,19 +117,19 @@ trait TraitConfigManager
      * @param bool $answer
      * @return static
      */
-    public function checkConfigExistence($answer = true)
+    public function checkConfigExistence(bool $answer = true)
     {
-        $this->check_config_existence = (bool)$answer;
+        $this->check_config_existence = $answer;
         return $this;
     }
 
     /**
      * Check if an alias is a valid name or not
      *
-     * @param $alias
+     * @param string $alias
      * @throws IInvalidVariableNameException
      */
-    protected function isValidAliasName($alias): void
+    protected function isValidAliasName(string $alias): void
     {
         if (!$this->isValidName($alias)) {
             throw new InvalidAliasNameException($alias);
@@ -139,10 +139,10 @@ trait TraitConfigManager
     /**
      * Check if a path is exists as file
      *
-     * @param $path
+     * @param string $path
      * @throws IFileNotExistsException
      */
-    protected function doCheckExistence($path)
+    protected function doCheckExistence(string $path)
     {
         if ($this->check_config_existence && !file_exists($path)) {
             throw new FileNotExistsException($path);
