@@ -16,7 +16,9 @@ return [
     'logic' => __DIR__ . '/' . $dir_one_level_up . 'app/logic/',
     'abstract' => __DIR__ . '/' . $dir_one_level_up . 'app/logic/abstract/',
     'adapter' => __DIR__ . '/' . $dir_one_level_up . 'app/logic/adapter/',
+    'command' => __DIR__ . '/' . $dir_one_level_up . 'app/logic/command/',
     'controller' => __DIR__ . '/' . $dir_one_level_up . 'app/logic/controller/',
+    'filter' => __DIR__ . '/' . $dir_one_level_up . 'app/logic/filter/',
     'handler' => __DIR__ . '/' . $dir_one_level_up . 'app/logic/handler/',
     'helper' => __DIR__ . '/' . $dir_one_level_up . 'app/logic/helper/',
     'interface' => __DIR__ . '/' . $dir_one_level_up . 'app/logic/interface/',
@@ -55,6 +57,9 @@ return [
     // Resource path(s)
     'resource' => __DIR__ . '/' . $dir_one_level_up . 'resource/',
 
+    // Manifest path
+    'manifest' => __DIR__ . '/' . $dir_one_level_up . 'public/build/manifest.json',
+
     // Config file(s) path
     'default_config' => [
         'main' => __DIR__ . '/config.php',
@@ -67,7 +72,10 @@ return [
         'mail' => __DIR__ . '/mail.php',
         'payment' => __DIR__ . '/payment.php',
         'security' => __DIR__ . '/security.php',
+        // webpack config
+        // DO NOT change it at all
+        'webpack' => __DIR__ . '/webpack.php',
         // Designer asset paths
-        'includes' => __DIR__ . '/' . $dir_one_level_up . 'app/design/config/includes.php'
+        'includes' => __DIR__ . '/' . $dir_one_level_up . 'app/design/config/includes.php',
     ]
 ];
