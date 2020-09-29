@@ -1,0 +1,15 @@
+#!/usr/bin/env php
+<?php
+require_once __DIR__ . '/vendor/autoload.php';
+
+use Sim\Command\MoveWebpackFiles;
+use Sim\Core\Bootstrap;
+use Symfony\Component\Console\Application;
+
+$bootstrap = new Bootstrap(false);
+$application = new Application();
+
+// ... register commands
+
+$application->add(new MoveWebpackFiles());
+$application->run();
