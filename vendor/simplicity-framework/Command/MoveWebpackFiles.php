@@ -33,7 +33,19 @@ class MoveWebpackFiles extends Command
         // this method must return an integer number with the "exit status code"
         // of the command. You can also use these constants to make code more readable
 
-        $output->writeln('Wait a moment to move webpack built directory files to wanted directories according to webpack config...');
+        // colors
+        // black, red, green, yellow, blue, magenta, cyan, white, default
+
+        // green text
+//         $output->writeln('<info>foo</info>');
+        // yellow text
+//         $output->writeln('<comment>foo</comment>');
+        // black text on a cyan background
+//         $output->writeln('<question>foo</question>');
+        // white text on a red background
+//         $output->writeln('<error>foo</error>');
+
+        $output->writeln('Start moving files...');
 
         try {
             $webpackConfig = \config()->get('webpack');
@@ -56,7 +68,7 @@ class MoveWebpackFiles extends Command
             return Command::FAILURE;
         }
 
-        $output->writeln('<fg=green>OK! All good</>');
+        $output->writeln('<info>OK! All good</info>');
 
         // return this if there was no problem running the command
         // (it's equivalent to returning int(0))
