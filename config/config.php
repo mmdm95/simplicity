@@ -13,5 +13,5 @@ return [
      * set this to true
      * Acceptable values are [true], [false]
      */
-    'show_errors_native' => false,
+    'show_native_errors' => false,
 ];

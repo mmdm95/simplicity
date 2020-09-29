@@ -68,7 +68,7 @@ class ErrorHandler implements IInitialize
         // Set current application mode
         $this->mode = $this->config->get('main.mode') ?? MODE_PRODUCTION;
         // Set current error handling mode
-        $this->show_native_php_error = $this->config->get('main.show_errors_native') ?? false;
+        $this->show_native_php_error = $this->config->get('main.show_native_errors') ?? false;
         //-----
         $this->setConstants();
         //-----
