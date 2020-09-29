@@ -1,39 +1,34 @@
 const path = require("path");
 const common = require("./webpack.common");
-const {merge} = require("webpack-merge");
+const merge = require("webpack-merge");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const TerserPlugin = require("terser-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = merge(common, {
     mode: "production",
     output: {
         filename: "[name].[contentHash].bundle.js",
-        path: path.resolve(__dirname, "public.js")
-    },
-    optimization: {
-        minimizer: [
-            new OptimizeCssAssetsPlugin(),
-            new TerserPlugin(),
-        ]
+        path: path.resolve(__dirname, "../public/build/")
     },
     plugins: [
-        new MiniCssExtractPlugin({ filename: "[name].[contentHash].css" }),
-        new HtmlWebpackPlugin({
-            template: "./resource/view/template.html"
-        })
+        new MiniCssExtractPlugin({filename: "[name].[contentHash].css"}),
     ],
     module: {
         rules: [
             {
-                test: /\.scss$/,
+                test: /\.(scss|sass)$/,
+                include: path.join(__dirname, "../resource/css/"),
                 use: [
-                    MiniCssExtractPlugin.loader, //3. Extract css into files
+                    {
+                        loader: MiniCssExtractPlugin.loader, //3. Extract css into files
+                        options: {
+                            outputPath: path.resolve(__dirname, "../public/css/")
+                        }
+                    },
                     "css-loader", //2. Turns css into commonjs
                     "sass-loader" //1. Turns sass into css
                 ]
             }
         ]
-    }
+    },
+    devtool: "source-map"
 });
