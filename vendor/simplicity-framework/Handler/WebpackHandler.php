@@ -85,14 +85,6 @@ class WebpackHandler implements IRunnable
                     // get all files with specific filters
                     $allFiles = $this->getFilteredFiles($this->absolute_build_dir, $filters);
 
-                    // clean/delete all files that is in manifest
-                    // if there is files inside build directory
-                    // that matches test, otherwise there is no
-                    // need to delete anything at all
-                    if (count($allFiles)) {
-                        $this->cleanDirsAccordingToManifest($dir);
-                    }
-
                     /**
                      * @var SplFileInfo $file
                      */
@@ -144,19 +136,6 @@ class WebpackHandler implements IRunnable
     private function getFilteredFiles($dir, $filters): array
     {
         return FileSystem::getDirFilteredFiles($dir, $filters);
-    }
-
-    /**
-     * @param string $dir
-     */
-    private function cleanDirsAccordingToManifest(string $dir): void
-    {
-        $dir = trim($dir, '\\/');
-
-        $manifestJsonFile = manifest_content();
-        foreach ($manifestJsonFile as $map => $filename) {
-            FileSystem::deleteFile($this->absolute_base_dir . $dir . DIRECTORY_SEPARATOR . $filename);
-        }
     }
 
     /**
