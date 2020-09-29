@@ -77,7 +77,7 @@ trait TraitConfigManager
     {
         $arr = explode('.', $alias);
         $alias = array_shift($arr);
-        if (count($arr) >= 2) {
+        if (count($arr) >= 1) {
             $keys = implode('.', $arr);
         }
 
