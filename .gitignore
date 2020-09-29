@@ -189,6 +189,7 @@ data/draft/*
 !data/draft/.keep
 vendor/*
 !vendor/simplicity-framework
+!vendor/simplicity-framework/*
 resource/*
 !resource/.keep
 .env
