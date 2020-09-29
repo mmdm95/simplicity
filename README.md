@@ -13,7 +13,13 @@ composer install
 npm install
 ```
 
-then run 
+then run
+
+```
+php sim webpack:clean-files
+```
+
+then
 
 ```
 // for development
@@ -21,6 +27,12 @@ npm run start
 
 // for production
 npm run build
+```
+
+and then run
+
+```
+php sim webpack:move-files
 ```
 
 # License
