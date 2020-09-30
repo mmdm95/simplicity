@@ -63,6 +63,17 @@ class Bootstrap
     protected $route_needed = true;
 
     /**
+     * @var array $vendor_helpers_path
+     */
+    protected $vendor_helpers_path = [
+        __DIR__ . '/../vendor/simplicity-framework/Functions/generalHelper.php',
+        __DIR__ . '/../vendor/simplicity-framework/Functions/appHelper.php',
+        __DIR__ . '/../vendor/simplicity-framework/Functions/pathHelper.php',
+        __DIR__ . '/../vendor/simplicity-framework/Functions/loadHelper.php',
+        __DIR__ . '/../vendor/simplicity-framework/Functions/routerHelper.php',
+    ];
+
+    /**
      * Bootstrap constructor.
      * @param bool $route_needed
      * @throws IFileNotExistsException
@@ -200,10 +211,9 @@ class Bootstrap
      */
     protected function loadHelper()
     {
-        LoaderSingleton::getInstance()->load_require_once(__DIR__ . '/../vendor/simplicity-framework/Functions/appHelper.php');
-        LoaderSingleton::getInstance()->load_require_once(__DIR__ . '/../vendor/simplicity-framework/Functions/generalHelper.php');
-        LoaderSingleton::getInstance()->load_require_once(__DIR__ . '/../vendor/simplicity-framework/Functions/pathHelper.php');
-        LoaderSingleton::getInstance()->load_require_once(__DIR__ . '/../vendor/simplicity-framework/Functions/routerHelper.php');
+        foreach ($this->vendor_helpers_path as $vendor_helper) {
+            LoaderSingleton::getInstance()->load_require_once($vendor_helper);
+        }
 
         /**
          * @var HelperDefinition $helper
