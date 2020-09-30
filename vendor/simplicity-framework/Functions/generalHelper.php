@@ -82,3 +82,39 @@ if (!function_exists('get_ip_address')) {
         return 'unknown';
     }
 }
+
+if (!function_exists('e')) {
+    function e($string, $flags = ENT_COMPAT | ENT_HTML401, $encoding = 'UTF-8', $double_encode = true)
+    {
+        htmlspecialchars($string, $flags, $encoding, $double_encode);
+    }
+}
+
+if (!function_exists('truncate')) {
+    /**
+     * @see https://stackoverflow.com/a/16239689/12154893
+     */
+    function truncate(string $string, int $length, string $delimiter = '...')
+    {
+        return mb_strimwidth($string, 0, $length, $delimiter);
+    }
+}
+
+if (!function_exists('truncate_word')) {
+    /**
+     * @see https://stackoverflow.com/a/16239689/12154893
+     */
+    function truncate_word(string $string, int $length, string $delimiter = '...')
+    {
+        // we don't want new lines in our preview
+        $text_only_spaces = preg_replace('/\s+/', ' ', $string);
+
+        // truncates the text
+        $text_truncated = mb_substr($text_only_spaces, 0, mb_strpos($text_only_spaces, ' ', $length));
+
+        // prevents last word truncation
+        $preview = trim(mb_substr($text_truncated, 0, mb_strrpos($text_truncated, ' '))) . $delimiter;
+
+        return $preview;
+    }
+}
