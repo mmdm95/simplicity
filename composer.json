@@ -38,7 +38,7 @@
     "mmdm/sim-fa-sms": "^0.0",
     "mmdm/sim-fa-payment": "^0.0",
     "mmdm/sim-form": "^0.0",
-    "mmdm/sim-file": "^0.1.1",
+    "mmdm/sim-file": "^0.2.0",
     "aura/sql": "^3.0",
     "aura/sqlquery": "^2.7",
     "pecee/simple-router": "4.2.0.6",

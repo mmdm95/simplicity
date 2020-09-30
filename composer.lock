@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d93ccd1490e06677de89d1f6ed6a0013",
+    "content-hash": "bb74d9c40b10b6e981d45a9d9064f951",
     "packages": [
         {
             "name": "aura/sql",
@@ -635,16 +635,16 @@
         },
         {
             "name": "mmdm/sim-file",
-            "version": "v0.1.4",
+            "version": "v0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mmdm95/sim-file.git",
-                "reference": "7854916ba8b501cf1c898a0e66e140aaaaa6ee8b"
+                "reference": "68239343e47477164d69553229e4599f4a67173d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mmdm95/sim-file/zipball/7854916ba8b501cf1c898a0e66e140aaaaa6ee8b",
-                "reference": "7854916ba8b501cf1c898a0e66e140aaaaa6ee8b",
+                "url": "https://api.github.com/repos/mmdm95/sim-file/zipball/68239343e47477164d69553229e4599f4a67173d",
+                "reference": "68239343e47477164d69553229e4599f4a67173d",
                 "shasum": ""
             },
             "require": {
@@ -669,7 +669,7 @@
                 }
             ],
             "description": "A simple yet nice file management library",
-            "time": "2020-09-29T21:55:26+00:00"
+            "time": "2020-09-30T00:16:04+00:00"
         },
         {
             "name": "mmdm/sim-form",
