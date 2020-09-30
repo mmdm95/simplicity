@@ -41,31 +41,40 @@ if (!function_exists('get_protocol')) {
 }
 
 if (!function_exists('get_base_url')) {
+    /**
+     * @see https://stackoverflow.com/a/8891890/12154893
+     */
     function get_base_url()
     {
-        static $base;
+        static $base = null;
 
-        if (!isset($base)) {
-            $base = get_protocol() . $_SERVER['SERVER_NAME'];
-            if (!is_null($_SERVER['SERVER_PORT']) &&
-                (('http' == get_protocol() && 80 != $_SERVER['SERVER_PORT']) ||
-                    ('https' == get_protocol() && 443 != $_SERVER['SERVER_PORT']))) {
-                $base .= ':' . $_SERVER['SERVER_PORT'];
-            }
+        if (is_null($base)) {
+            $ssl = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on');
+            $sp = strtolower($_SERVER['SERVER_PROTOCOL']);
+            $protocol = substr($sp, 0, strpos($sp, '/')) . (($ssl) ? 's' : '');
+            $port = $_SERVER['SERVER_PORT'];
+            $port = ((!$ssl && $port == '80') || ($ssl && $port == '443')) ? '' : ':' . $port;
+            $host = (isset($_SERVER['HTTP_X_FORWARDED_HOST']))
+                ? $_SERVER['HTTP_X_FORWARDED_HOST']
+                : (isset($_SERVER['HTTP_HOST'])
+                    ? $_SERVER['HTTP_HOST']
+                    : null);
+            $host = isset($host) ? $host : $_SERVER['SERVER_NAME'] . $port;
+            $base = $protocol . '://' . $host;
         }
 
         return $base;
     }
 }
 
-/**
- * Retrieves the best guess of the client's actual IP address.
- * Takes into account numerous HTTP proxy headers due to variations
- * in how different ISPs handle IP addresses in headers between hops.
- *
- * @see https://stackoverflow.com/questions/1634782/what-is-the-most-accurate-way-to-retrieve-a-users-correct-ip-address-in-php
- */
 if (!function_exists('get_ip_address')) {
+    /**
+     * Retrieves the best guess of the client's actual IP address.
+     * Takes into account numerous HTTP proxy headers due to variations
+     * in how different ISPs handle IP addresses in headers between hops.
+     *
+     * @see https://stackoverflow.com/questions/1634782/what-is-the-most-accurate-way-to-retrieve-a-users-correct-ip-address-in-php
+     */
     function get_ip_address()
     {
         foreach (array('HTTP_CLIENT_IP', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_FORWARDED', 'HTTP_X_CLUSTER_CLIENT_IP', 'HTTP_FORWARDED_FOR', 'HTTP_FORWARDED', 'REMOTE_ADDR') as $key) {
@@ -84,7 +93,7 @@ if (!function_exists('get_ip_address')) {
 }
 
 if (!function_exists('e')) {
-    function e($string, $flags = ENT_COMPAT | ENT_HTML401, $encoding = 'UTF-8', $double_encode = true)
+    function e($string, $flags = ENT_QUOTES, $encoding = 'UTF-8', $double_encode = true)
     {
         htmlspecialchars($string, $flags, $encoding, $double_encode);
     }
