@@ -16,6 +16,16 @@ npm install
 then run
 
 ```
+// for development
+npm run sim-dev
+
+// for production
+npm run sim-build
+```
+
+or in **hard way** run
+
+```
 php sim webpack:clean-files
 ```
 
