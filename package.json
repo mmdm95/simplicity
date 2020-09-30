@@ -39,7 +39,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack --config webpack/webpack.dev.js",
-    "build": "webpack --config webpack/webpack.prod.js"
+    "build": "webpack --config webpack/webpack.prod.js",
+    "sim-dev": "php sim webpack:clean-files & webpack --config webpack/webpack.dev.js & php sim webpack:move-files",
+    "sim-build": "php sim webpack:clean-files & webpack --config webpack/webpack.prod.js & php sim webpack:move-files"
   },
   "repository": {
     "type": "git",
