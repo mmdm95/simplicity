@@ -46,13 +46,19 @@ abstract class AbstractViewRenderer implements IViewRenderer
      */
     protected $config;
 
-    public function __construct($layout, $template, array $arguments = [])
+    /**
+     * AbstractViewRenderer constructor.
+     * @param string $layout
+     * @param string $template
+     * @param array $arguments
+     */
+    public function __construct(string $layout, string $template = '', array $arguments = [])
     {
         $this->path = path();
         $this->config = config();
 
-        $this->layout = (string)$layout;
-        $this->template = (string)$template;
+        $this->layout = $layout;
+        $this->template = $template;
         $this->arguments = is_array($arguments) ? $arguments : [];
     }
 

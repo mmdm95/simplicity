@@ -8,11 +8,6 @@ use Sim\Loader\Loader;
 
 class PHPRenderer extends AbstractViewRenderer
 {
-    public function __construct($layout, $template, array $arguments = [])
-    {
-        parent::__construct($layout, $template, $arguments);
-    }
-
     /**
      * Render layout page and put template inside itself
      * @throws IFileNotExistsException
@@ -20,7 +15,8 @@ class PHPRenderer extends AbstractViewRenderer
     public function renderLayout(): void
     {
         if (!empty($this->layout)) {
-            $this->rendered = $this->getContent($this->layout);
+            $content = $this->getContent();
+            $this->rendered = $content;
         }
     }
 
@@ -31,21 +27,25 @@ class PHPRenderer extends AbstractViewRenderer
     public function renderTemplate(): void
     {
         if (empty($this->layout)) {
-            $this->rendered = $this->getContent($this->template);
+            $content = $this->getContent();
+            $this->rendered = $content;
         } else {
-            $this->arguments['content'] = $this->getContent($this->template);
+            $this->arguments['content'] = $content;
         }
     }
 
     /**
-     * Get content of a file
-     *
-     * @param $path
-     * @return string
-     * @throws IFileNotExistsException
+     * @param string $content
+     * @return bool
      */
-    public function getContent($path): string
+    protected function getContent(): string
     {
-        return \loader()->setData($this->arguments)->getContent($path);
+        if (empty($this->layout)) {
+            $filename = $this->template;
+        } else {
+            $filename = $this->layout;
+        }
+
+        return \loader()->setData($this->arguments)->getContent($filename);
     }
 }
