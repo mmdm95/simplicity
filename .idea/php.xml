@@ -62,6 +62,9 @@
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php73" />
       <path value="$PROJECT_DIR$/vendor/simplicity-framework/Commands" />
       <path value="$PROJECT_DIR$/vendor/simplicity-framework/Handlers" />
+      <path value="$PROJECT_DIR$/vendor/simplicity-framework/Handler" />
+      <path value="$PROJECT_DIR$/vendor/simplicity-framework/Command" />
+      <path value="$PROJECT_DIR$/vendor/predis/predis" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />
