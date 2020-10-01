@@ -2,6 +2,7 @@
 
 namespace App\Logic;
 
+use App\Logic\Controller\ResourceController;
 use App\Logic\Handler\CustomExceptionHandler;
 use App\Logic\Middleware\AdminAuthMiddleware;
 use Pecee\SimpleRouter\SimpleRouter as Router;
@@ -100,7 +101,7 @@ class Route implements IInitialize
             });
 
             Router::get('/home/{id?}', 'HomeController@index');
-            Router::get('/answers/{id}', 'ControllerAnswers@show', ['where' => ['id' => '[0-9]+']]);
+            Router::get('/answers/{id}', 'HomeController@show', ['where' => ['id' => '[0-9]+']]);
 
             /**
              * Restful resource (see IResourceController interface for available methods)

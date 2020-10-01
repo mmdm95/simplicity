@@ -13,4 +13,9 @@ class HomeController extends AbstractController
 
         return $this->render();
     }
+
+    public function show($id)
+    {
+        return $id;
+    }
 }
