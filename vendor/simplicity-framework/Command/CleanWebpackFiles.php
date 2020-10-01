@@ -55,7 +55,7 @@ class CleanWebpackFiles extends Command
         try {
             $manifestJsonFile = manifest_content();
             if (count($manifestJsonFile)) {
-                $correctFilename = asset_path();
+                $correctFilename = get_path('public', '', true);
                 foreach ($manifestJsonFile as $map => $filename) {
                     FileSystem::deleteDirAllFilteredFiles($correctFilename, [
                         new TypeFilter(IFileSystem::TYPE_FILE),
