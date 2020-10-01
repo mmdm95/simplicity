@@ -1,7 +1,5 @@
 <?php
 
-$dir_one_level_up = '../';
-
 return [
     /**
      * Log occurred errors in file
@@ -11,5 +9,5 @@ return [
     /**
      * Error log file
      */
-    'log_error_file' => __DIR__ . '/' . $dir_one_level_up . 'data/log/errors.txt',
+    'log_error_file' => BASE_ROOT . 'data/log/errors.txt',
 ];

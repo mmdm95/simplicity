@@ -1,7 +1,5 @@
 <?php
 
-$dir_one_level_up = '../';
-
 /**
  * Key options are used in many classes, so DO NOT change them (keys),
  * but you can add config to this
@@ -11,54 +9,54 @@ $dir_one_level_up = '../';
  */
 return [
     // App path(s)
-    'app' => __DIR__ . '/' . $dir_one_level_up . 'app/',
+    'app' => BASE_ROOT . 'app/',
     // Logic paths
-    'logic' => __DIR__ . '/' . $dir_one_level_up . 'app/logic/',
-    'abstract' => __DIR__ . '/' . $dir_one_level_up . 'app/logic/abstract/',
-    'adapter' => __DIR__ . '/' . $dir_one_level_up . 'app/logic/adapter/',
-    'command' => __DIR__ . '/' . $dir_one_level_up . 'app/logic/command/',
-    'controller' => __DIR__ . '/' . $dir_one_level_up . 'app/logic/controller/',
-    'filter' => __DIR__ . '/' . $dir_one_level_up . 'app/logic/filter/',
-    'handler' => __DIR__ . '/' . $dir_one_level_up . 'app/logic/handler/',
-    'helper' => __DIR__ . '/' . $dir_one_level_up . 'app/logic/helper/',
-    'interface' => __DIR__ . '/' . $dir_one_level_up . 'app/logic/interface/',
-    'middleware' => __DIR__ . '/' . $dir_one_level_up . 'app/logic/middleware/',
-    'model' => __DIR__ . '/' . $dir_one_level_up . 'app/logic/model/',
-    'util' => __DIR__ . '/' . $dir_one_level_up . 'app/logic/util/',
-    'validation' => __DIR__ . '/' . $dir_one_level_up . 'app/logic/validation/',
+    'logic' => BASE_ROOT . 'app/logic/',
+    'abstract' => BASE_ROOT . 'app/logic/abstract/',
+    'adapter' => BASE_ROOT . 'app/logic/adapter/',
+    'command' => BASE_ROOT . 'app/logic/command/',
+    'controller' => BASE_ROOT . 'app/logic/controller/',
+    'filter' => BASE_ROOT . 'app/logic/filter/',
+    'handler' => BASE_ROOT . 'app/logic/handler/',
+    'helper' => BASE_ROOT . 'app/logic/helper/',
+    'interface' => BASE_ROOT . 'app/logic/interface/',
+    'middleware' => BASE_ROOT . 'app/logic/middleware/',
+    'model' => BASE_ROOT . 'app/logic/model/',
+    'util' => BASE_ROOT . 'app/logic/util/',
+    'validation' => BASE_ROOT . 'app/logic/validation/',
     // Design paths
-    'design' => __DIR__ . '/' . $dir_one_level_up . 'app/design/',
-    'view' => __DIR__ . '/' . $dir_one_level_up . 'app/design/view/',
-    'layout' => __DIR__ . '/' . $dir_one_level_up . 'app/design/layout/',
-    'partial' => __DIR__ . '/' . $dir_one_level_up . 'app/design/partial/',
-    'error' => __DIR__ . '/' . $dir_one_level_up . 'app/design/error/',
-    'design_config' => __DIR__ . '/' . $dir_one_level_up . 'app/design/config/',
+    'design' => BASE_ROOT . 'app/design/',
+    'view' => BASE_ROOT . 'app/design/view/',
+    'layout' => BASE_ROOT . 'app/design/layout/',
+    'partial' => BASE_ROOT . 'app/design/partial/',
+    'error' => BASE_ROOT . 'app/design/error/',
+    'design_config' => BASE_ROOT . 'app/design/config/',
 
     // Data path(s)
-    'cache' => __DIR__ . '/' . $dir_one_level_up . 'data/cache/',
-    'draft' => __DIR__ . '/' . $dir_one_level_up . 'data/draft/',
-    'log' => __DIR__ . '/' . $dir_one_level_up . 'data/log/',
+    'cache' => BASE_ROOT . 'data/cache/',
+    'draft' => BASE_ROOT . 'data/draft/',
+    'log' => BASE_ROOT . 'data/log/',
 
     // Translation path(s)
-    'i18n' => __DIR__ . '/' . $dir_one_level_up . 'i18n/',
+    'i18n' => BASE_ROOT . 'i18n/',
 
     // Core path(s)
-    'core' => __DIR__ . '/' . $dir_one_level_up . 'core/',
+    'core' => BASE_ROOT . 'core/',
 
     // Vendor path(s)
-    'vendor' => __DIR__ . '/' . $dir_one_level_up . 'vendor/',
+    'vendor' => BASE_ROOT . 'vendor/',
 
     // Config path(s)
-    'config' => __DIR__ . '/' . $dir_one_level_up . 'config/',
+    'config' => BASE_ROOT . 'config/',
 
     // Public path(s)
-    'public' => __DIR__ . '/' . $dir_one_level_up . 'public/',
+    'public' => BASE_ROOT . 'public/',
 
     // Resource path(s)
-    'resource' => __DIR__ . '/' . $dir_one_level_up . 'resource/',
+    'resource' => BASE_ROOT . 'resource/',
 
     // Manifest path
-    'manifest' => __DIR__ . '/' . $dir_one_level_up . 'public/build/manifest.json',
+    'manifest' => BASE_ROOT . 'public/build/manifest.json',
 
     // Config file(s) path
     'default_config' => [
@@ -76,6 +74,6 @@ return [
         // DO NOT change it at all
         'webpack' => __DIR__ . '/webpack.php',
         // Designer asset paths
-        'includes' => __DIR__ . '/' . $dir_one_level_up . 'app/design/config/includes.php',
+        'includes' => BASE_ROOT . 'app/design/config/includes.php',
     ]
 ];

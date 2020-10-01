@@ -2,13 +2,11 @@
 
 use Sim\I18n\ISOLanguageCodes;
 
-$dir_one_level_up = '../';
-
 return [
     /**
      * Language directory
      */
-    'language_dir' => __DIR__ . '/' . $dir_one_level_up . 'i18n',
+    'language_dir' => BASE_ROOT . 'i18n',
 
     /**
      * Site language

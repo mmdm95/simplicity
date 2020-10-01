@@ -2,11 +2,6 @@
 
 return [
     /**
-     * Base path to prepend other directory names
-     */
-    'base_dir' => 'public/',
-
-    /**
      * The path that should check for all built assets
      */
     'build_dir' => 'public/build/',
