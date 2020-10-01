@@ -43,7 +43,7 @@ return [
 
         'css' => [
             'move' => [
-                'test' => '/\.(css|scss|sass)(\.map)?$/i',
+                'test' => '/\.(sa|sc|c)ss(\.map)?$/i',
                 'overwrite' => true,
             ],
         ],
