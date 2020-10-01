@@ -81,3 +81,23 @@ if (!function_exists('translate')) {
         return container()->get(Translate::class);
     }
 }
+
+if (!function_exists('manifest_content')) {
+    function manifest_content(): array
+    {
+        static $manifest = [];
+
+        if(empty($manifest)) {
+            // get manifest path
+            $manifestPath = get_path('manifest', '', false);
+
+            // read manifest if exists
+            $data = file_get_contents($manifestPath);
+            if (false !== $data) {
+                $manifest = json_decode($data, true);
+            }
+        }
+
+        return $manifest;
+    }
+}

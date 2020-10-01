@@ -27,6 +27,13 @@ if (!function_exists('is_php')) {
     }
 }
 
+if (!function_exists('get_root')) {
+    function get_root()
+    {
+        return BASE_ROOT;
+    }
+}
+
 if (!function_exists('get_protocol')) {
     function get_protocol()
     {
@@ -44,15 +51,15 @@ if (!function_exists('get_base_url')) {
     /**
      * @see https://stackoverflow.com/a/8891890/12154893
      */
-    function get_base_url()
+    function get_base_url(): string
     {
-        static $base = null;
+        static $base = '';
 
-        if (is_null($base)) {
-            $ssl = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on');
+        if (empty($base)) {
+            $port = $_SERVER['SERVER_PORT'];
+            $ssl = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on' || $port == '443');
             $sp = strtolower($_SERVER['SERVER_PROTOCOL']);
             $protocol = substr($sp, 0, strpos($sp, '/')) . (($ssl) ? 's' : '');
-            $port = $_SERVER['SERVER_PORT'];
             $port = ((!$ssl && $port == '80') || ($ssl && $port == '443')) ? '' : ':' . $port;
             $host = (isset($_SERVER['HTTP_X_FORWARDED_HOST']))
                 ? $_SERVER['HTTP_X_FORWARDED_HOST']
@@ -61,6 +68,7 @@ if (!function_exists('get_base_url')) {
                     : null);
             $host = isset($host) ? $host : $_SERVER['SERVER_NAME'] . $port;
             $base = $protocol . '://' . $host;
+            $base .= '/';
         }
 
         return $base;
@@ -89,6 +97,30 @@ if (!function_exists('get_ip_address')) {
             }
         }
         return 'unknown';
+    }
+}
+
+if (!function_exists('root2url')) {
+    function root2url(string $path)
+    {
+        $separator = '/';
+        $baseRoot = str_replace(['\\', '/'], $separator, BASE_ROOT);
+        $baseUrl = str_replace(['\\', '/'], $separator, get_base_url());
+        $path = str_replace(['\\', '/'], $separator, $path);
+
+        return str_replace($baseRoot, $baseUrl, $path);
+    }
+}
+
+if (!function_exists('url2root')) {
+    function url2root(string $path)
+    {
+        $separator = '/';
+        $baseRoot = str_replace(['\\', '/'], $separator, BASE_ROOT);
+        $baseUrl = str_replace(['\\', '/'], $separator, get_base_url());
+        $path = str_replace(['\\', '/'], $separator, $path);
+
+        return str_replace($baseUrl, $baseRoot, $path);
     }
 }
 
