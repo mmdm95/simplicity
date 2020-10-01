@@ -49,7 +49,7 @@ class MoveWebpackFiles extends Command
 
         try {
             $webpackConfig = \config()->get('webpack');
-            $webpackHandler = new WebpackHandler($webpackConfig['base_dir'], $webpackConfig['build_dir'], $webpackConfig['rules']);
+            $webpackHandler = new WebpackHandler($webpackConfig['build_dir'], $webpackConfig['rules']);
             $webpackHandler->run();
         } catch (\Exception $e) {
             $err = $this->commandErr($e);
