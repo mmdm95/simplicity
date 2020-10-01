@@ -40,7 +40,7 @@ class WebpackHandler implements IRunnable
             throw new \InvalidArgumentException("Specified directory for webpack built assets, is not valid!");
         }
 
-        $this->base_dir = asset_path('', true);
+        $this->base_dir = get_path('public', '', true);
         $this->build_dir = BASE_ROOT . $build_dir;
         $this->config = $config;
     }
