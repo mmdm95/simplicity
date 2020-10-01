@@ -56,10 +56,10 @@ if (!function_exists('get_base_url')) {
         static $base = '';
 
         if (empty($base)) {
-            $port = $_SERVER['SERVER_PORT'];
-            $ssl = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on' || $port == '443');
+            $ssl = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on');
             $sp = strtolower($_SERVER['SERVER_PROTOCOL']);
             $protocol = substr($sp, 0, strpos($sp, '/')) . (($ssl) ? 's' : '');
+            $port     = $s['SERVER_PORT'];
             $port = ((!$ssl && $port == '80') || ($ssl && $port == '443')) ? '' : ':' . $port;
             $host = (isset($_SERVER['HTTP_X_FORWARDED_HOST']))
                 ? $_SERVER['HTTP_X_FORWARDED_HOST']
