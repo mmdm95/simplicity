@@ -28,14 +28,14 @@ if (!function_exists('is_php')) {
 }
 
 if (!function_exists('get_root')) {
-    function get_root()
+    function get_root(): string
     {
         return BASE_ROOT;
     }
 }
 
 if (!function_exists('get_protocol')) {
-    function get_protocol()
+    function get_protocol(): string
     {
         static $protocol;
 
@@ -83,9 +83,15 @@ if (!function_exists('get_ip_address')) {
      *
      * @see https://stackoverflow.com/questions/1634782/what-is-the-most-accurate-way-to-retrieve-a-users-correct-ip-address-in-php
      */
-    function get_ip_address()
+    function get_ip_address(): string
     {
-        foreach (array('HTTP_CLIENT_IP', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_FORWARDED', 'HTTP_X_CLUSTER_CLIENT_IP', 'HTTP_FORWARDED_FOR', 'HTTP_FORWARDED', 'REMOTE_ADDR') as $key) {
+        foreach (array('HTTP_CLIENT_IP',
+                     'HTTP_X_FORWARDED_FOR',
+                     'HTTP_X_FORWARDED',
+                     'HTTP_X_CLUSTER_CLIENT_IP',
+                     'HTTP_FORWARDED_FOR',
+                     'HTTP_FORWARDED',
+                     'REMOTE_ADDR') as $key) {
             if (array_key_exists($key, $_SERVER) === true) {
                 foreach (explode(',', $_SERVER[$key]) as $ip) {
                     $ip = trim($ip); // just to be safe
@@ -135,7 +141,7 @@ if (!function_exists('truncate')) {
     /**
      * @see https://stackoverflow.com/a/16239689/12154893
      */
-    function truncate(string $string, int $length, string $delimiter = '...')
+    function truncate(string $string, int $length, string $delimiter = '...'): string
     {
         return mb_strimwidth($string, 0, $length, $delimiter);
     }
@@ -145,7 +151,7 @@ if (!function_exists('truncate_word')) {
     /**
      * @see https://stackoverflow.com/a/16239689/12154893
      */
-    function truncate_word(string $string, int $length, string $delimiter = '...')
+    function truncate_word(string $string, int $length, string $delimiter = '...'): string
     {
         // we don't want new lines in our preview
         $text_only_spaces = preg_replace('/\s+/', ' ', $string);
@@ -157,5 +163,37 @@ if (!function_exists('truncate_word')) {
         $preview = trim(mb_substr($text_truncated, 0, mb_strrpos($text_truncated, ' '))) . $delimiter;
 
         return $preview;
+    }
+}
+
+if (!function_exists('slugify')) {
+    /**
+     * @see https://stackoverflow.com/a/2955878/12154893
+     */
+    function slugify(string $string): string
+    {
+        // replace non letter or digits by -
+        $text = preg_replace('~[^\pL\d]+~u', '-', $text);
+
+        // transliterate
+        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+
+        // remove unwanted characters
+        $text = preg_replace('~[^-\w]+~', '', $text);
+
+        // trim
+        $text = trim($text, '-');
+
+        // remove duplicate -
+        $text = preg_replace('~-+~', '-', $text);
+
+        // lowercase
+        $text = strtolower($text);
+
+        if (empty($text)) {
+            return 'n-a';
+        }
+
+        return $text;
     }
 }
