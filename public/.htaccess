@@ -1,14 +1,19 @@
 <IfModule mod_rewrite.c>
-    Options -MultiViews
-    Options -Indexes
-    Options +FollowSymLinks
+    <IfModule mod_negotiation.c>
+        Options -MultiViews
+        Options -Indexes
+        Options +FollowSymLinks
+    </IfModule>
 
     RewriteEngine On
+
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^ %1 [L,R=301]
 
     # Handle Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-l
-
-    RewriteRule ^(.*)|([^/]*)$ index.php/$1 [QSA,L]
+    RewriteRule ^(.*?)$ index.php/$1 [QSA,L]
 </IfModule>
