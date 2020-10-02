@@ -59,7 +59,7 @@ class CleanWebpackFiles extends Command
                 foreach ($manifestJsonFile as $map => $filename) {
                     FileSystem::deleteDirAllFilteredFiles($correctFilename, [
                         new TypeFilter(IFileSystem::TYPE_FILE),
-                        new RegexFilter('/' . preg_quote($filename) . '/i'),
+                        new RegexFilter('~' . preg_quote($filename) . '~i'),
                     ]);
                 }
             }

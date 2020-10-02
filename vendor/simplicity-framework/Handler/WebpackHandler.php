@@ -104,7 +104,8 @@ class WebpackHandler implements IRunnable
         if (is_string($excluded)) {
             $excludedFilters[] = new RegexFilter($excluded);
         } elseif (is_array($excluded)) {
-            $excludedFilters[] = new RegexFilter('/^(?!(' . implode('|', $excluded) . ')$).*/i');
+            $excluded = array_map('preg_quote', $excluded);
+            $excludedFilters[] = new RegexFilter('~^(?!(' . implode('|', $excluded) . ')$).*~i');
         }
 
         return $excludedFilters;
