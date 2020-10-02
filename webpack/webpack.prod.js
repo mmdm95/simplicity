@@ -1,3 +1,5 @@
+const {ProvidePlugin} = require("webpack");
+
 const path = require("path");
 const common = require("./webpack.common");
 const merge = require("webpack-merge");
@@ -7,24 +9,38 @@ module.exports = merge(common, {
     mode: "production",
     output: {
         filename: "[name].[contentHash].bundle.js",
-        path: path.resolve(__dirname, "../public/build/")
+        path: path.resolve(__dirname, "../public/build/"),
     },
     plugins: [
-        new MiniCssExtractPlugin({filename: "[name].[contentHash].css"}),
+        new MiniCssExtractPlugin({
+            filename: "[name].[contentHash].css",
+            chunkFilename: '[id].[contentHash].css'
+        }),
+        new ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery',
+            'window.jQuery': 'jquery',
+            Popper: ['popper.js', 'default']
+        })
     ],
     module: {
         rules: [
             {
-                test: /\.(scss|sass)$/,
-                include: path.join(__dirname, "../resource/css/"),
+                test: /\.(sa|sc|c)ss$/,
                 use: [
                     {
-                        loader: MiniCssExtractPlugin.loader, //3. Extract css into files
+                        loader: MiniCssExtractPlugin.loader, //4. Extract css into files
                         options: {
-                            outputPath: path.resolve(__dirname, "../public/css/")
+                            outputPath: "../css/"
                         }
                     },
-                    "css-loader", //2. Turns css into commonjs
+                    {
+                        loader: "css-loader", //3. Turns css into commonjs
+                        options: {
+                            importLoaders: 1
+                        }
+                    },
+                    'postcss-loader', //2. Use autoprefixer plugin
                     "sass-loader" //1. Turns sass into css
                 ]
             }

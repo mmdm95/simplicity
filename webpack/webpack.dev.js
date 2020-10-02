@@ -11,10 +11,11 @@ module.exports = merge(common, {
     module: {
         rules: [
             {
-                test: /\.(scss|sass)$/,
+                test: /\.(sa|sc|c)ss$/,
                 use: [
-                    "style-loader", //3. Inject styles into DOM
-                    "css-loader", //2. Turns css into commonjs
+                    "style-loader", //4. Inject styles into DOM
+                    "css-loader", //3. Turns css into commonjs
+                    'postcss-loader', //2. Use autoprefixer plugin
                     "sass-loader" //1. Turns sass into css
                 ]
             }

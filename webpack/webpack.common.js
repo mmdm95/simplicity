@@ -10,6 +10,7 @@ const ManifestPlugin = require('webpack-manifest-plugin');
 
 module.exports = {
     entry: {
+        font: path.resolve(__dirname, "../resource/js/font.js"),
         main: path.resolve(__dirname, "../resource/js/index.js"),
         vendor: path.resolve(__dirname, "../resource/js/vendor.js")
     },
@@ -56,7 +57,7 @@ module.exports = {
                     loader: "file-loader",
                     options: {
                         name: "[name].[hash].[ext]",
-                        outputPath: path.resolve(__dirname, "../public/image/")
+                        outputPath: "../image/"
                     }
                 }
             },
@@ -67,7 +68,7 @@ module.exports = {
                         loader: 'file-loader',
                         options: {
                             name: '[name].[hash].[ext]',
-                            outputPath: path.resolve(__dirname, "../public/fonts/")
+                            outputPath: "../fonts/"
                         }
                     }
                 ]
