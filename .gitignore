@@ -64,7 +64,6 @@ local.properties
 **/nbproject/private/
 **/nbproject/Makefile-*.mk
 **/nbproject/Package-*.bash
-build/
 nbbuild/
 dist/
 nbdist/
@@ -194,4 +193,5 @@ resource/*
 !resource/.keep
 .env
 node_modules
-!public/build/manifest.json
+build/*
+!build/manifest.json
