@@ -16,6 +16,9 @@ npm install
 **NOTE:** If you don't have `manifest.json` inside `public/build` 
 directory, then create it because it is needed for framework to work.
 
+**NOTE:** Also you need to have `.env` file to prevent error. Duplicate 
+`.env.example` and fill variables with your needs.
+
 then run
 
 ```
