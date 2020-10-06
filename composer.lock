@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "80f1eccbecc418f213fd56b5bfa78e71",
+    "content-hash": "cd0fbc0d95fa14f23b7f162dec82808c",
     "packages": [
         {
             "name": "aura/sql",
@@ -295,16 +295,16 @@
         },
         {
             "name": "mmdm/sim-benchmark",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mmdm95/sim-benchmark.git",
-                "reference": "f1fcfbee330f8c2df01fe938d43a609200dc1890"
+                "reference": "e1232f5e897508858cc168293817a3ab5061064d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mmdm95/sim-benchmark/zipball/f1fcfbee330f8c2df01fe938d43a609200dc1890",
-                "reference": "f1fcfbee330f8c2df01fe938d43a609200dc1890",
+                "url": "https://api.github.com/repos/mmdm95/sim-benchmark/zipball/e1232f5e897508858cc168293817a3ab5061064d",
+                "reference": "e1232f5e897508858cc168293817a3ab5061064d",
                 "shasum": ""
             },
             "require": {
@@ -328,20 +328,20 @@
                 }
             ],
             "description": "A simple yet nice benchmark for your codes",
-            "time": "2020-07-31T15:29:03+00:00"
+            "time": "2020-10-05T18:24:54+00:00"
         },
         {
             "name": "mmdm/sim-captcha",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mmdm95/sim-captcha.git",
-                "reference": "477777298abf6cbfb6d693b7bce7bc05eb5d3f11"
+                "reference": "3c0e4ca0e443cbcaa6ad92fb8ea62e9868b9b442"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mmdm95/sim-captcha/zipball/477777298abf6cbfb6d693b7bce7bc05eb5d3f11",
-                "reference": "477777298abf6cbfb6d693b7bce7bc05eb5d3f11",
+                "url": "https://api.github.com/repos/mmdm95/sim-captcha/zipball/3c0e4ca0e443cbcaa6ad92fb8ea62e9868b9b442",
+                "reference": "3c0e4ca0e443cbcaa6ad92fb8ea62e9868b9b442",
                 "shasum": ""
             },
             "require": {
@@ -367,20 +367,20 @@
                 }
             ],
             "description": "A simple yet nice captcha library",
-            "time": "2020-08-18T18:58:36+00:00"
+            "time": "2020-10-05T19:30:23+00:00"
         },
         {
             "name": "mmdm/sim-container",
-            "version": "v1.2.1",
+            "version": "v1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mmdm95/sim-container.git",
-                "reference": "06d6bc42937c9bea767cb2f7cd9696a28405d0a9"
+                "reference": "ad156cb085883acb380a8a8992ee63303f5f0e9a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mmdm95/sim-container/zipball/06d6bc42937c9bea767cb2f7cd9696a28405d0a9",
-                "reference": "06d6bc42937c9bea767cb2f7cd9696a28405d0a9",
+                "url": "https://api.github.com/repos/mmdm95/sim-container/zipball/ad156cb085883acb380a8a8992ee63303f5f0e9a",
+                "reference": "ad156cb085883acb380a8a8992ee63303f5f0e9a",
                 "shasum": ""
             },
             "require": {
@@ -404,20 +404,20 @@
                 }
             ],
             "description": "A simple yet nice dependency injection container",
-            "time": "2020-08-28T19:04:00+00:00"
+            "time": "2020-10-05T22:04:33+00:00"
         },
         {
             "name": "mmdm/sim-cookie",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mmdm95/sim-cookie.git",
-                "reference": "bfdfc9e1b1bd9e67e5a8d346c4a6ac27326f9d8c"
+                "reference": "09182237ec32f8c4cf43a4ebaa41f025cb24655b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mmdm95/sim-cookie/zipball/bfdfc9e1b1bd9e67e5a8d346c4a6ac27326f9d8c",
-                "reference": "bfdfc9e1b1bd9e67e5a8d346c4a6ac27326f9d8c",
+                "url": "https://api.github.com/repos/mmdm95/sim-cookie/zipball/09182237ec32f8c4cf43a4ebaa41f025cb24655b",
+                "reference": "09182237ec32f8c4cf43a4ebaa41f025cb24655b",
                 "shasum": ""
             },
             "require": {
@@ -442,20 +442,20 @@
                 }
             ],
             "description": "A simple yet nice cookie management library",
-            "time": "2020-08-19T19:48:57+00:00"
+            "time": "2020-10-05T22:47:09+00:00"
         },
         {
             "name": "mmdm/sim-crypt",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mmdm95/sim-crypt.git",
-                "reference": "f6029a9cbe4fd5c656bd9de83330d9ff79a09b98"
+                "reference": "7146a94e9e1e1fd558f3ca1cab50e31a18ec4ee5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mmdm95/sim-crypt/zipball/f6029a9cbe4fd5c656bd9de83330d9ff79a09b98",
-                "reference": "f6029a9cbe4fd5c656bd9de83330d9ff79a09b98",
+                "url": "https://api.github.com/repos/mmdm95/sim-crypt/zipball/7146a94e9e1e1fd558f3ca1cab50e31a18ec4ee5",
+                "reference": "7146a94e9e1e1fd558f3ca1cab50e31a18ec4ee5",
                 "shasum": ""
             },
             "require": {
@@ -479,20 +479,20 @@
                 }
             ],
             "description": "A simple yet nice encryption/decryption library",
-            "time": "2020-07-28T23:29:13+00:00"
+            "time": "2020-10-05T22:15:19+00:00"
         },
         {
             "name": "mmdm/sim-csrf",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mmdm95/sim-csrf.git",
-                "reference": "4e395a34c559a9993c01a5ed8cb6ab7c43619463"
+                "reference": "1b78e9e713777719cf48511a135a5721f87a9101"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mmdm95/sim-csrf/zipball/4e395a34c559a9993c01a5ed8cb6ab7c43619463",
-                "reference": "4e395a34c559a9993c01a5ed8cb6ab7c43619463",
+                "url": "https://api.github.com/repos/mmdm95/sim-csrf/zipball/1b78e9e713777719cf48511a135a5721f87a9101",
+                "reference": "1b78e9e713777719cf48511a135a5721f87a9101",
                 "shasum": ""
             },
             "require": {
@@ -516,20 +516,20 @@
                 }
             ],
             "description": "A simple yet nice CSRF library",
-            "time": "2020-08-23T17:57:55+00:00"
+            "time": "2020-10-05T23:02:43+00:00"
         },
         {
             "name": "mmdm/sim-event-dispatcher",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mmdm95/sim-event-dispatcher.git",
-                "reference": "7a8fab657b2af481b561683c2c3e1a5c8c21dbd1"
+                "reference": "e3064bef9523fb8b8cf52ed75b49f8e3da75a5ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mmdm95/sim-event-dispatcher/zipball/7a8fab657b2af481b561683c2c3e1a5c8c21dbd1",
-                "reference": "7a8fab657b2af481b561683c2c3e1a5c8c21dbd1",
+                "url": "https://api.github.com/repos/mmdm95/sim-event-dispatcher/zipball/e3064bef9523fb8b8cf52ed75b49f8e3da75a5ca",
+                "reference": "e3064bef9523fb8b8cf52ed75b49f8e3da75a5ca",
                 "shasum": ""
             },
             "require": {
@@ -553,20 +553,20 @@
                 }
             ],
             "description": "A simple yet nice event dispatcher",
-            "time": "2020-08-11T02:19:08+00:00"
+            "time": "2020-10-05T23:13:34+00:00"
         },
         {
             "name": "mmdm/sim-fa-payment",
-            "version": "v0.0.1",
+            "version": "v0.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mmdm95/sim-fa-payment.git",
-                "reference": "786aec2ef4965ec252548c4365747331d42e7339"
+                "reference": "c667eac957067d1da0f014883bb79ed28cceb444"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mmdm95/sim-fa-payment/zipball/786aec2ef4965ec252548c4365747331d42e7339",
-                "reference": "786aec2ef4965ec252548c4365747331d42e7339",
+                "url": "https://api.github.com/repos/mmdm95/sim-fa-payment/zipball/c667eac957067d1da0f014883bb79ed28cceb444",
+                "reference": "c667eac957067d1da0f014883bb79ed28cceb444",
                 "shasum": ""
             },
             "require": {
@@ -592,20 +592,20 @@
                 }
             ],
             "description": "A simple yet nice iranian payment library",
-            "time": "2020-09-18T09:24:12+00:00"
+            "time": "2020-10-05T23:19:02+00:00"
         },
         {
             "name": "mmdm/sim-fa-sms",
-            "version": "v0.0.1",
+            "version": "v0.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mmdm95/sim-fa-sms.git",
-                "reference": "71856308b238b26c09e7bdf353f2ed8cb85b62a1"
+                "reference": "4f6f7f74bb3748c52f3ed788d987d1af3c21e4a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mmdm95/sim-fa-sms/zipball/71856308b238b26c09e7bdf353f2ed8cb85b62a1",
-                "reference": "71856308b238b26c09e7bdf353f2ed8cb85b62a1",
+                "url": "https://api.github.com/repos/mmdm95/sim-fa-sms/zipball/4f6f7f74bb3748c52f3ed788d987d1af3c21e4a3",
+                "reference": "4f6f7f74bb3748c52f3ed788d987d1af3c21e4a3",
                 "shasum": ""
             },
             "require": {
@@ -631,20 +631,20 @@
                 }
             ],
             "description": "A simple yet nice SMS library",
-            "time": "2020-09-17T06:01:34+00:00"
+            "time": "2020-10-05T23:24:10+00:00"
         },
         {
             "name": "mmdm/sim-file",
-            "version": "v0.2.1",
+            "version": "v0.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mmdm95/sim-file.git",
-                "reference": "5ea1443162461b035dd580cd725eefe70a6c8fe0"
+                "reference": "3f22ea0da313cac3d0a318924daf7bdfa19e5979"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mmdm95/sim-file/zipball/5ea1443162461b035dd580cd725eefe70a6c8fe0",
-                "reference": "5ea1443162461b035dd580cd725eefe70a6c8fe0",
+                "url": "https://api.github.com/repos/mmdm95/sim-file/zipball/3f22ea0da313cac3d0a318924daf7bdfa19e5979",
+                "reference": "3f22ea0da313cac3d0a318924daf7bdfa19e5979",
                 "shasum": ""
             },
             "require": {
@@ -669,20 +669,20 @@
                 }
             ],
             "description": "A simple yet nice file management library",
-            "time": "2020-09-30T22:16:07+00:00"
+            "time": "2020-10-05T23:32:35+00:00"
         },
         {
             "name": "mmdm/sim-form",
-            "version": "v0.0.1",
+            "version": "v0.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mmdm95/sim-form.git",
-                "reference": "b47c2f49ec106d795622f15a83412d120c197f3c"
+                "reference": "33f1f46e146ccfaf62c89b369fea20a0536fbebc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mmdm95/sim-form/zipball/b47c2f49ec106d795622f15a83412d120c197f3c",
-                "reference": "b47c2f49ec106d795622f15a83412d120c197f3c",
+                "url": "https://api.github.com/repos/mmdm95/sim-form/zipball/33f1f46e146ccfaf62c89b369fea20a0536fbebc",
+                "reference": "33f1f46e146ccfaf62c89b369fea20a0536fbebc",
                 "shasum": ""
             },
             "require": {
@@ -706,20 +706,20 @@
                 }
             ],
             "description": "A simple yet nice form library",
-            "time": "2020-09-05T17:39:20+00:00"
+            "time": "2020-10-06T00:23:10+00:00"
         },
         {
             "name": "mmdm/sim-i18n",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mmdm95/sim-i18n.git",
-                "reference": "2150533731c7fad452d374f40fffe1885b48a19e"
+                "reference": "c1db1cc00841b61bc51a69acd3eaa11b65354c6f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mmdm95/sim-i18n/zipball/2150533731c7fad452d374f40fffe1885b48a19e",
-                "reference": "2150533731c7fad452d374f40fffe1885b48a19e",
+                "url": "https://api.github.com/repos/mmdm95/sim-i18n/zipball/c1db1cc00841b61bc51a69acd3eaa11b65354c6f",
+                "reference": "c1db1cc00841b61bc51a69acd3eaa11b65354c6f",
                 "shasum": ""
             },
             "require": {
@@ -742,20 +742,20 @@
                 }
             ],
             "description": "A simple way for multiple language management",
-            "time": "2020-08-20T12:51:31+00:00"
+            "time": "2020-10-06T00:38:41+00:00"
         },
         {
             "name": "mmdm/sim-logger",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mmdm95/sim-logger.git",
-                "reference": "e43882173022579db13d1807c893ac24a331c2a3"
+                "reference": "27497cbaf6816d4b51503d16a5270da5846e0901"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mmdm95/sim-logger/zipball/e43882173022579db13d1807c893ac24a331c2a3",
-                "reference": "e43882173022579db13d1807c893ac24a331c2a3",
+                "url": "https://api.github.com/repos/mmdm95/sim-logger/zipball/27497cbaf6816d4b51503d16a5270da5846e0901",
+                "reference": "27497cbaf6816d4b51503d16a5270da5846e0901",
                 "shasum": ""
             },
             "require": {
@@ -779,20 +779,20 @@
                 }
             ],
             "description": "A simple yet nice logger library",
-            "time": "2020-08-24T23:22:22+00:00"
+            "time": "2020-10-06T00:44:11+00:00"
         },
         {
             "name": "mmdm/sim-session",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mmdm95/sim-session.git",
-                "reference": "d8255be1c4e30aed8587b7e737f38a347e3183c5"
+                "reference": "6489b38352289f25bf3164277caecd15b5c3b7c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mmdm95/sim-session/zipball/d8255be1c4e30aed8587b7e737f38a347e3183c5",
-                "reference": "d8255be1c4e30aed8587b7e737f38a347e3183c5",
+                "url": "https://api.github.com/repos/mmdm95/sim-session/zipball/6489b38352289f25bf3164277caecd15b5c3b7c7",
+                "reference": "6489b38352289f25bf3164277caecd15b5c3b7c7",
                 "shasum": ""
             },
             "require": {
@@ -817,7 +817,7 @@
                 }
             ],
             "description": "A simple yet nice session management library",
-            "time": "2020-08-02T17:25:43+00:00"
+            "time": "2020-10-06T00:50:15+00:00"
         },
         {
             "name": "mobiledetect/mobiledetectlib",
@@ -1034,16 +1034,16 @@
         },
         {
             "name": "php-di/php-di",
-            "version": "6.2.3",
+            "version": "6.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHP-DI/PHP-DI.git",
-                "reference": "63c444646f5f41d84818af1c780abed8ebcc082c"
+                "reference": "96a9ddb0c5d790d120c3332821be09d9bc9db288"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHP-DI/PHP-DI/zipball/63c444646f5f41d84818af1c780abed8ebcc082c",
-                "reference": "63c444646f5f41d84818af1c780abed8ebcc082c",
+                "url": "https://api.github.com/repos/PHP-DI/PHP-DI/zipball/96a9ddb0c5d790d120c3332821be09d9bc9db288",
+                "reference": "96a9ddb0c5d790d120c3332821be09d9bc9db288",
                 "shasum": ""
             },
             "require": {
@@ -1102,7 +1102,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-09-24T12:21:43+00:00"
+            "time": "2020-10-01T11:44:12+00:00"
         },
         {
             "name": "php-di/phpdoc-reader",
@@ -1369,7 +1369,7 @@
         },
         {
             "name": "symfony/console",
-            "version": "v5.1.6",
+            "version": "v5.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
@@ -2058,7 +2058,7 @@
         },
         {
             "name": "symfony/string",
-            "version": "v5.1.6",
+            "version": "v5.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/string.git",
