@@ -40,9 +40,6 @@ return [
     // Translation path(s)
     'i18n' => BASE_ROOT . 'I18n/',
 
-    // Core path(s)
-    'core' => BASE_ROOT . 'Core/',
-
     // Vendor path(s)
     'vendor' => BASE_ROOT . 'vendor/',
 
