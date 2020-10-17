@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Logic\Handler;
+namespace App\Logic\Handlers;
 
 class ResourceHandler
 {

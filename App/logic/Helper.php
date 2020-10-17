@@ -14,7 +14,7 @@ class Helper implements IInitialize
         // helper path string that is
         // usually in logic helper folder
         // and prefixed by
-        // __DIR__ . '/helper/'
+        // __DIR__ . '/Helpers/'
         return [
 
         ];

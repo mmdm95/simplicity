@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Logic\Controller;
+namespace App\Logic\Controllers;
 
 use App\Logic\Handler\ResourceHandler;
 use Pecee\Controllers\IResourceController;

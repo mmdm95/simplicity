@@ -1,16 +1,14 @@
 <?php
 
-namespace App\Logic\Controller;
+namespace App\Logic\Controllers;
 
-use App\Logic\Model\Model;
+use App\Logic\Models\Model;
 use Sim\Abstracts\Mvc\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
     public function index()
     {
-        $t = new Model();
-
         $this->isIndividual(true)
             ->setTemplate('partial/simple');
 

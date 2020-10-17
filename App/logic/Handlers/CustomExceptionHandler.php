@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Logic\Handler;
+namespace App\Logic\Handlers;
 
 use App\Logic\Controller\PageController;
 use Pecee\Http\Request;

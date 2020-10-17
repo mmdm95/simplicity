@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Logic\Adapter;
+namespace App\Logic\Adapters;
 
 use Pecee\Http\Middleware\BaseCsrfVerifier;
 use Pecee\Http\Security\ITokenProvider;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Sim\Logic\Model;
+namespace App\Logic\Models;
 
 use Aura\Sql\ConnectionLocator;
 use Aura\Sql\ExtendedPdo;
@@ -164,9 +164,7 @@ abstract class BaseModel
      */
     private function setConnectionLocator()
     {
-        $dbConfig = (string)config()->get('database');
-
-        var_dump($dbConfig);
+        $dbConfig = json_encode(config()->get('database.databases'));
 
         $dbs = json_decode($dbConfig, true);
         $default = null;
@@ -189,7 +187,7 @@ abstract class BaseModel
                         $opts
                     );
                 };
-            } else if (strtolower($k) == 'read') {
+            } elseif (strtolower($k) == 'read') {
                 foreach ($k as $k2 => $v2) {
                     $types['read'][$k2] = $v2['type'];
                     $dsn = $v2['dsn'];
@@ -205,7 +203,7 @@ abstract class BaseModel
                         );
                     };
                 }
-            } else if (strtolower($k) == 'write') {
+            } elseif (strtolower($k) == 'write') {
                 foreach ($k as $k2 => $v2) {
                     $types['write'][$k2] = $v2['type'];
                     $dsn = $v2['dsn'];

@@ -2,9 +2,9 @@
 
 namespace App\Logic;
 
-use App\Logic\Controller\ResourceController;
-use App\Logic\Handler\CustomExceptionHandler;
-use App\Logic\Middleware\AdminAuthMiddleware;
+use App\Logic\Controllers\ResourceController;
+use App\Logic\Handlers\CustomExceptionHandler;
+use App\Logic\Middlewares\AdminAuthMiddleware;
 use Pecee\SimpleRouter\SimpleRouter as Router;
 use Sim\Interfaces\IInitialize;
 
@@ -56,7 +56,7 @@ class Route implements IInitialize
          * The default namespace for route-callbacks, so we don't have to specify it each time.
          * Can be overwritten by using the namespace config option on your routes.
          */
-        Router::setDefaultNamespace('\App\Logic\Controller');
+        Router::setDefaultNamespace('\App\Logic\Controllers');
     }
 
     /**

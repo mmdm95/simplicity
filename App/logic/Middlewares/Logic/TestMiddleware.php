@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Logic\Middleware\Logic;
+namespace App\Logic\Middlewares\Logic;
 
 use Sim\Abstracts\Mvc\Controller\Middleware\AbstractMiddleware;
 
