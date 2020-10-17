@@ -29,7 +29,6 @@
       <path value="$PROJECT_DIR$/vendor/mmdm/sim-logger" />
       <path value="$PROJECT_DIR$/vendor/simplicity-framework/Utils" />
       <path value="$PROJECT_DIR$/vendor/mmdm/sim-cookie" />
-      <path value="$PROJECT_DIR$/vendor/simplicity-framework/Authentication" />
       <path value="$PROJECT_DIR$/vendor/mmdm/sim-benchmark" />
       <path value="$PROJECT_DIR$/vendor/simplicity-framework/Traits" />
       <path value="$PROJECT_DIR$/vendor/mmdm/sim-i18n" />
@@ -65,6 +64,7 @@
       <path value="$PROJECT_DIR$/vendor/simplicity-framework/Handler" />
       <path value="$PROJECT_DIR$/vendor/simplicity-framework/Command" />
       <path value="$PROJECT_DIR$/vendor/predis/predis" />
+      <path value="$PROJECT_DIR$/vendor/mmdm/sim-auth" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />
