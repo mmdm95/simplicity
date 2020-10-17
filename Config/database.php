@@ -9,8 +9,8 @@ return [
     //
     // Support multiple database.
     // For multiple database, append followed codes after default array.
-    //    'read' => array(
-    //        'slave1' => array(
+    //    'read' => [
+    //        'slave1' => [
     //            'type' => 'mysql',
     //            'dsn' => 'mysql:host=localhost;dbname=database;charset=utf8',
     //            'username' => 'root',
@@ -18,13 +18,13 @@ return [
     //            'options' => [
     //
     //            ]
-    //        ) // ,
+    //        ],
     //        /*
     //         * Your other databases...
     //         */
-    //    ),
-    //    'write' => array(
-    //        'master' => array(
+    //    ],
+    //    'write' => [
+    //        'master' => [
     //            'type' => 'mysql',
     //            'dsn' => 'mysql:host=localhost;dbname=database;charset=utf8',
     //            'username' => 'root',
@@ -32,19 +32,19 @@ return [
     //            'options' => [
     //
     //            ]
-    //        ) // ,
+    //        ],
     //        /*
     //         * Your other databases...
     //         */
-    //    )
-    'databases' => array(
-        'default' => array(
+    //    ]
+    'databases' => [
+        'default' => [
             'type' => 'mysql',
-            'dsn' => 'mysql:host=' . getenv('DB_HOST') . ';port=' . getenv('DB_PORT') .
-                ';dbname=' . getenv('DB_NAME') . ';charset=utf8',
-            'username' => getenv('DB_USERNAME'),
-            'password' => getenv('DB_PASSWORD') ?? '',
+            'dsn' => 'mysql:host=' . $_ENV['DB_HOST'] . ';port=' . $_ENV['DB_PORT'] .
+                ';dbname=' . $_ENV['DB_NAME'] . ';charset=utf8',
+            'username' => $_ENV['DB_USERNAME'],
+            'password' => $_ENV['DB_PASSWORD'] ?? '',
             'options' => []
-        )
-    )
+        ]
+    ]
 ];

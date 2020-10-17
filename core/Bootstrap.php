@@ -2,7 +2,7 @@
 
 namespace Sim\Core;
 
-use App\Logic\Adapter\SessionTokenProvider;
+use App\Logic\Adapters\SessionTokenProvider;
 use App\Logic\Container as ContainerDefinition;
 use App\Logic\Route as RouteDefinition;
 use App\Logic\Event as EventDefinition;
@@ -143,9 +143,9 @@ class Bootstrap
         }
 
         // Get needed objects from Container class
-        $this->loader = loader();
-        $this->path = path();
-        $this->config = config();
+        $this->loader = \loader();
+        $this->path = \path();
+        $this->config = \config();
 
         // Call needed functionality
         $this->defineConfig();
@@ -170,13 +170,13 @@ class Bootstrap
         $dotenv->required('DB_PORT')->isInteger();
 
         $this->config->setAsConfig('env', [
-            'APP_MAIN_KEY' => getenv('APP_MAIN_KEY'),
-            'APP_ASSURED_KEY' => getenv('APP_ASSURED_KEY'),
-            'DB_HOST' => getenv('DB_HOST'),
-            'DB_NAME' => getenv('DB_NAME'),
-            'DB_USERNAME' => getenv('DB_USERNAME'),
-            'DB_PASSWORD' => getenv('DB_PASSWORD'),
-            'DB_PORT' => getenv('DB_PORT'),
+            'APP_MAIN_KEY' => $_ENV['APP_MAIN_KEY'],
+            'APP_ASSURED_KEY' => $_ENV['APP_ASSURED_KEY'],
+            'DB_HOST' => $_ENV['DB_HOST'],
+            'DB_NAME' => $_ENV['DB_NAME'],
+            'DB_USERNAME' => $_ENV['DB_USERNAME'],
+            'DB_PASSWORD' => $_ENV['DB_PASSWORD'],
+            'DB_PORT' => $_ENV['DB_PORT'],
         ]);
     }
 
