@@ -1,6 +1,6 @@
 <?php
 
-namespace Sim\Core;
+namespace App;
 
 use App\Logic\Adapters\SessionTokenProvider;
 use App\Logic\Container as ContainerDefinition;
@@ -20,6 +20,7 @@ use Sim\Cookie\Cookie;
 
 use Sim\Crypt\Crypt;
 use Sim\Event\Emitter;
+use Sim\Handler\ErrorHandler;
 use Sim\I18n\Translate;
 use Sim\Interfaces\ConfigManager\IConfig;
 use Sim\Interfaces\IFileNotExistsException;
