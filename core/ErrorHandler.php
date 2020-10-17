@@ -110,6 +110,7 @@ class ErrorHandler implements IInitialize
     public function shut()
     {
         $error = error_get_last();
+
         if ($error && ($error['type'] & E_FATAL)) {
             $this->handler($error['type'], $error['message'], $error['file'], $error['line']);
         }
@@ -183,13 +184,13 @@ class ErrorHandler implements IInitialize
         $message = '<b>' . $typeStr . ': </b>' . $errStr . ' in <b>' . $errFile . '</b> on line <b>' . $errLine . '</b><br/>';
 
         // Set error in data to pass it to page(s)
-        $Exceptions_detail = [
-            'type' => $errno,
-            'typeStr' => $typeStr,
-            'message' => $errStr,
-            'file' => $errFile,
-            'line' => $errLine
-        ];
+        $Exceptions_detail = $this->messageFormat(
+            $errno,
+            $typeStr,
+            $errStr,
+            $errFile,
+            $errLine
+        );
 
         if (($errno & E_FATAL) && (0 == ($this->mode ^ MODE_PRODUCTION))) {
             $this->loadInternalServerErrorFile($message, $Exceptions_detail, $this->err_500);
@@ -231,13 +232,20 @@ class ErrorHandler implements IInitialize
             print "<tr style='background-color:rgb(230,230,230);'><th>Trace</th><td style='padding: 7px;'>{$e->getTraceAsString()}</td></tr>";
             print "</table></tbody></div>";
         } else {
-            $message = "Message: {$e->getMessage()}; File: {$e->getFile()}; Line: {$e->getLine()};";
+            $message = "Message: {$e->getMessage()}; File: {$e->getFile()}; Line: {$e->getLine()}; Trace: {$e->getTraceAsString()};";
             // Log the error
 //            file_put_contents(log_path("exceptions.log"), $message . PHP_EOL, FILE_APPEND);
             $this->logger->log($message, get_class($e));
 
             // Load 500 error file
-            $Exceptions_detail = $this->messageFormat(get_class($e), get_class($e), $e->getMessage(), $e->getFile(), $e->getLine());
+            $Exceptions_detail = $this->messageFormat(
+                get_class($e),
+                get_class($e),
+                $e->getMessage(),
+                $e->getFile(),
+                $e->getLine(),
+                $e->getTraceAsString()
+            );
             $this->loadInternalServerErrorFile($message, $Exceptions_detail, $this->err_500);
         }
 
@@ -265,16 +273,18 @@ class ErrorHandler implements IInitialize
      * @param $msg
      * @param $file
      * @param $line
+     * @param $trace
      * @return array
      */
-    protected function messageFormat($type, $typeStr, $msg, $file, $line)
+    protected function messageFormat($type, $typeStr, $msg, $file, $line, $trace = null)
     {
         return [
             'type' => $type,
             'typeStr' => $typeStr,
             'message' => $msg,
             'file' => $file,
-            'line' => $line
+            'line' => $line,
+            'trace' => $trace,
         ];
     }
 }
