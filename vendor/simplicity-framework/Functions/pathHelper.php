@@ -124,13 +124,6 @@ if (!function_exists('resource_path')) {
     }
 }
 
-if (!function_exists('core_path')) {
-    function core_path(string $path = '', bool $trailing_slash = false, $separator = '/')
-    {
-        return get_path('core', $path, $trailing_slash, $separator);
-    }
-}
-
 if (!function_exists('helper_path')) {
     function helper_path(string $path = '', bool $trailing_slash = false, $separator = '/')
     {

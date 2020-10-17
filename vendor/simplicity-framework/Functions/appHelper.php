@@ -11,11 +11,19 @@ use Sim\I18n\Translate;
 use Sim\Loader\Loader as Loader;
 use Sim\PathManager\PathManager;
 use Sim\Session\Session as Session;
+use Sim\DBConnector;
 
 if (!function_exists('container')) {
     function container(): Container
     {
         return Container::getInstance();
+    }
+}
+
+if (!function_exists('connector')) {
+    function connector(): DBConnector
+    {
+        return \container()->get(DBConnector::class);
     }
 }
 
@@ -87,7 +95,7 @@ if (!function_exists('manifest_content')) {
     {
         static $manifest = [];
 
-        if(empty($manifest)) {
+        if (empty($manifest)) {
             // get manifest path
             $manifestPath = get_path('manifest', '', false);
 
