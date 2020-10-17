@@ -1,0 +1,25 @@
+/**
+* @see https://www.php.net/manual/en/reflectionproperty.gettype.php
+*/
+
+class User
+{
+    /**
+     * @var string
+     */
+    public $name;
+}
+
+function getTypeNameFromAnnotation(string $className, string $propertyName): ?string
+{
+    $rp = new \ReflectionProperty($className, $propertyName);
+    if (preg_match('/@var\s+([^\s]+)/', $rp->getDocComment(), $matches)) {
+        return $matches[1];
+    }
+
+    return null;
+}
+
+echo getTypeNameFromAnnotation('User', 'name');
+
+// string

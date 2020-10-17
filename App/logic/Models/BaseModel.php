@@ -165,6 +165,9 @@ abstract class BaseModel
     private function setConnectionLocator()
     {
         $dbConfig = (string)config()->get('database');
+
+        var_dump($dbConfig);
+
         $dbs = json_decode($dbConfig, true);
         $default = null;
         $read = [];

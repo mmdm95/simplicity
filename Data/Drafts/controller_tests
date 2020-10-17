@@ -1,0 +1,16 @@
+//        var_dump($id);
+//        $middleware = new TestMiddleware();
+//        $this->setMiddleWare($middleware, ['mmdm']);
+
+        $this->isIndividual(true)
+            ->setTemplate('partial/simple');
+
+//        return $this->isJson(true)->render([
+//            'say' => 'hello',
+//        ], function () {
+//            return 'not good enough';
+//        });
+        return $this->render([], function () {
+            return 'not good enough';
+        });
+//        return 'hi';
