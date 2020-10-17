@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cd0fbc0d95fa14f23b7f162dec82808c",
+    "content-hash": "186fdbfa0c2db38c2e46a8035cb541e4",
     "packages": [
         {
             "name": "aura/sql",
@@ -292,6 +292,49 @@
                 "useragent"
             ],
             "time": "2020-06-13T08:05:20+00:00"
+        },
+        {
+            "name": "mmdm/sim-auth",
+            "version": "v0.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mmdm95/sim-auth.git",
+                "reference": "d42a00026e0d519c034a43ed692953712f6a71f9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mmdm95/sim-auth/zipball/d42a00026e0d519c034a43ed692953712f6a71f9",
+                "reference": "d42a00026e0d519c034a43ed692953712f6a71f9",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-openssl": "*",
+                "ext-pdo": "*",
+                "jenssegers/agent": "^2.6",
+                "mmdm/sim-cookie": "^1.0",
+                "mmdm/sim-session": "^1.0",
+                "php": ">=7.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Sim\\Auth\\": "src/",
+                    "Sim\\Auth\\Config\\": "src/_Config/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "MMDM",
+                    "email": "mmdehghan95@gmail.com"
+                }
+            ],
+            "description": "A simple yet nice authentication library",
+            "time": "2020-10-17T00:27:25+00:00"
         },
         {
             "name": "mmdm/sim-benchmark",

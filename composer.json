@@ -10,8 +10,8 @@
   ],
   "autoload": {
     "psr-4": {
-      "App\\": "app/",
-      "Sim\\Core\\": "core/",
+      "App\\": "App/",
+      "Sim\\Core\\": "Core/",
       "Sim\\": "vendor/simplicity-framework/"
     }
   },
@@ -39,6 +39,7 @@
     "mmdm/sim-fa-payment": "^0.1",
     "mmdm/sim-form": "^0.1",
     "mmdm/sim-file": "^0.2.0",
+    "mmdm/sim-auth": "^0.1.1",
     "aura/sql": "^3.0",
     "aura/sqlquery": "^2.7",
     "pecee/simple-router": "4.2.0.6",
