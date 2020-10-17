@@ -62,20 +62,22 @@
     </div>
     <div class="message-content">
         <h3 style="line-height: 1.9; color: #444;">
-            <?= @$Exceptions_message; ?>
+            <?= $Exceptions_message ?? ''; ?>
         </h3>
         <br>
         <h4>
             More information:
         </h4>
         <code class="message-info">
-            type: <?= @$Exceptions_detail['type']; ?> - <?= @$Exceptions_detail['typeStr']; ?>
+            type: <?= $Exceptions_detail['type'] ?? ''; ?> - <?= $Exceptions_detail['typeStr'] ?? ''; ?>
             <br>
-            message: <?= @$Exceptions_detail['message']; ?>
+            message: <?= $Exceptions_detail['message'] ?? ''; ?>
             <br>
-            file: <?= @$Exceptions_detail['file']; ?>
+            file: <?= $Exceptions_detail['file'] ?? ''; ?>
             <br>
-            line: <?= @$Exceptions_detail['line']; ?>
+            line: <?= $Exceptions_detail['line'] ?? ''; ?>
+            <br>
+            trace: <?= $Exceptions_detail['trace'] ?? ''; ?>
         </code>
     </div>
 </div>
