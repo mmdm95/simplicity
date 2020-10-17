@@ -1,6 +1,6 @@
 <?php
 
-namespace Sim\Database\Drivers\Mysql;
+namespace Sim\Database\Drivers;
 
 
 interface IWhen
