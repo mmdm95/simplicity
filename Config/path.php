@@ -9,45 +9,45 @@
  */
 return [
     // App path(s)
-    'app' => BASE_ROOT . 'app/',
+    'app' => BASE_ROOT . 'App/',
     // Logic paths
-    'logic' => BASE_ROOT . 'app/logic/',
-    'abstract' => BASE_ROOT . 'app/logic/abstract/',
-    'adapter' => BASE_ROOT . 'app/logic/adapter/',
-    'command' => BASE_ROOT . 'app/logic/command/',
-    'controller' => BASE_ROOT . 'app/logic/controller/',
-    'filter' => BASE_ROOT . 'app/logic/filter/',
-    'handler' => BASE_ROOT . 'app/logic/handler/',
-    'helper' => BASE_ROOT . 'app/logic/helper/',
-    'interface' => BASE_ROOT . 'app/logic/interface/',
-    'middleware' => BASE_ROOT . 'app/logic/middleware/',
-    'model' => BASE_ROOT . 'app/logic/model/',
-    'util' => BASE_ROOT . 'app/logic/util/',
-    'validation' => BASE_ROOT . 'app/logic/validation/',
+    'logic' => BASE_ROOT . 'App/Logic/',
+    'abstract' => BASE_ROOT . 'App/Logic/Abstracts/',
+    'adapter' => BASE_ROOT . 'App/Logic/Adapters/',
+    'command' => BASE_ROOT . 'App/Logic/Commands/',
+    'controller' => BASE_ROOT . 'App/Logic/Controllers/',
+    'filter' => BASE_ROOT . 'App/Logic/Filters/',
+    'handler' => BASE_ROOT . 'App/Logic/Handlers/',
+    'helper' => BASE_ROOT . 'App/Logic/Helpers/',
+    'interface' => BASE_ROOT . 'App/Logic/Interfaces/',
+    'middleware' => BASE_ROOT . 'App/Logic/Middlewares/',
+    'model' => BASE_ROOT . 'App/Logic/Models/',
+    'util' => BASE_ROOT . 'App/Logic/Utils/',
+    'validation' => BASE_ROOT . 'App/Logic/Validations/',
     // Design paths
-    'design' => BASE_ROOT . 'app/design/',
-    'view' => BASE_ROOT . 'app/design/view/',
-    'layout' => BASE_ROOT . 'app/design/layout/',
-    'partial' => BASE_ROOT . 'app/design/partial/',
-    'error' => BASE_ROOT . 'app/design/error/',
-    'design_config' => BASE_ROOT . 'app/design/config/',
+    'design' => BASE_ROOT . 'App/Design/',
+    'view' => BASE_ROOT . 'App/Design/view/',
+    'layout' => BASE_ROOT . 'App/Design/layout/',
+    'partial' => BASE_ROOT . 'App/Design/partial/',
+    'error' => BASE_ROOT . 'App/Design/error/',
+    'design_config' => BASE_ROOT . 'App/Design/config/',
 
     // Data path(s)
-    'cache' => BASE_ROOT . 'data/cache/',
-    'draft' => BASE_ROOT . 'data/draft/',
-    'log' => BASE_ROOT . 'data/log/',
+    'cache' => BASE_ROOT . 'Data/Cache/',
+    'draft' => BASE_ROOT . 'Data/Drafts/',
+    'log' => BASE_ROOT . 'Data/Logs/',
 
     // Translation path(s)
-    'i18n' => BASE_ROOT . 'i18n/',
+    'i18n' => BASE_ROOT . 'I18n/',
 
     // Core path(s)
-    'core' => BASE_ROOT . 'core/',
+    'core' => BASE_ROOT . 'Core/',
 
     // Vendor path(s)
     'vendor' => BASE_ROOT . 'vendor/',
 
     // Config path(s)
-    'config' => BASE_ROOT . 'config/',
+    'config' => BASE_ROOT . 'Config/',
 
     // Public path(s)
     'public' => BASE_ROOT . 'public/',
@@ -74,6 +74,6 @@ return [
         // DO NOT change it at all
         'webpack' => __DIR__ . '/webpack.php',
         // Designer asset paths
-        'includes' => BASE_ROOT . 'app/design/config/includes.php',
+        'includes' => BASE_ROOT . 'App/Design/config/includes.php',
     ]
 ];
