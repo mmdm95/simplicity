@@ -15,6 +15,31 @@ class StringUtil
     const CONVERT_ALL = StringUtil::CONVERT_NUMBERS | StringUtil::CONVERT_CHARACTERS;
 
     /**
+     * @var array
+     */
+    private static $persian_numbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+
+    /**
+     * @var array
+     */
+    private static $arabic_numbers = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+
+    /**
+     * @var array
+     */
+    private static $english_numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+    /**
+     * @var array
+     */
+    private static $persian_special_characters = ['ا', 'گ', 'چ', 'پ', 'ژ', 'ه', 'ی'];
+
+    /**
+     * @var array
+     */
+    private static $arabic_special_characters = ['أ', 'ك', 'ج', 'ب', 'ز', 'ة', 'ي'];
+
+    /**
      * generate_random_string constants
      *
      * @param $length
@@ -68,20 +93,7 @@ class StringUtil
      */
     public static function toPersian($str, $convert_type = StringUtil::CONVERT_ALL)
     {
-        $enNumbers = range(0, 9);
-        $arNumbers = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
-        $numbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
-        $replacements = [
-            'أ' => 'ا',
-            'ك' => 'گ',
-            'ج' => 'چ',
-            'ب' => 'پ',
-            'ز' => 'ژ',
-            'ة' => 'ه',
-            'ي' => 'ی',
-        ];
-
-        if(StringUtil::CONVERT_NUMBERS & $convert_type || StringUtil::CONVERT_ALL & $convert_type) {
+        if (StringUtil::CONVERT_NUMBERS & $convert_type || StringUtil::CONVERT_ALL & $convert_type) {
             if (is_array($str)) {
                 $newArr = [];
                 foreach ($str as $k => $v) {
@@ -91,8 +103,8 @@ class StringUtil
             }
 
             if (is_string($str)) {
-                $str = str_replace($enNumbers, $numbers, $str);
-                $str = str_replace($arNumbers, $numbers, $str);
+                $str = str_replace(self::$english_numbers, self::$persian_numbers, $str);
+                $str = str_replace(self::$arabic_numbers, self::$persian_numbers, $str);
             }
         } elseif (StringUtil::CONVERT_CHARACTERS & $convert_type || StringUtil::CONVERT_ALL & $convert_type) {
             if (is_array($str)) {
@@ -104,7 +116,7 @@ class StringUtil
             }
 
             if (is_string($str)) {
-                $str = str_replace(array_keys($replacements), array_values($replacements), $str);
+                $str = str_replace(self::$arabic_special_characters, self::$persian_special_characters, $str);
             }
         }
 
@@ -121,20 +133,7 @@ class StringUtil
      */
     public static function toArabic($str, $convert_type = StringUtil::CONVERT_ALL)
     {
-        $enNumbers = range(0, 9);
-        $faNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
-        $numbers = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
-        $replacements = [
-            'ا' => 'أ',
-            'گ' => 'ك',
-            'چ' => 'ج',
-            'پ' => 'ب',
-            'ژ' => 'ز',
-            'ه' => 'ة',
-            'ی' => 'ي',
-        ];
-
-        if(StringUtil::CONVERT_NUMBERS & $convert_type || StringUtil::CONVERT_ALL & $convert_type) {
+        if (StringUtil::CONVERT_NUMBERS & $convert_type || StringUtil::CONVERT_ALL & $convert_type) {
             if (is_array($str)) {
                 $newArr = [];
                 foreach ($str as $k => $v) {
@@ -144,8 +143,8 @@ class StringUtil
             }
 
             if (is_string($str)) {
-                $str = str_replace($enNumbers, $numbers, $str);
-                $str = str_replace($faNumbers, $numbers, $str);
+                $str = str_replace(self::$english_numbers, self::$arabic_numbers, $str);
+                $str = str_replace(self::$persian_numbers, self::$arabic_numbers, $str);
             }
         } elseif (StringUtil::CONVERT_CHARACTERS & $convert_type || StringUtil::CONVERT_ALL & $convert_type) {
             if (is_array($str)) {
@@ -157,7 +156,7 @@ class StringUtil
             }
 
             if (is_string($str)) {
-                $str = str_replace(array_keys($replacements), array_values($replacements), $str);
+                $str = str_replace(self::$persian_special_characters, self::$arabic_special_characters, $str);
             }
         }
 
@@ -172,10 +171,6 @@ class StringUtil
      */
     public static function toEnglish($str)
     {
-        $arNumbers = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
-        $faNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
-        $numbers = range(0, 9);
-
         if (is_array($str)) {
             $newArr = [];
             foreach ($str as $k => $v) {
@@ -185,10 +180,75 @@ class StringUtil
         }
 
         if (is_string($str)) {
-            $str = str_replace($arNumbers, $numbers, $str);
-            $str = str_replace($faNumbers, $numbers, $str);
+            $str = str_replace(self::$arabic_numbers, self::$english_numbers, $str);
+            $str = str_replace(self::$persian_numbers, self::$english_numbers, $str);
         }
 
         return $str;
+    }
+
+    /**
+     * @see https://stackoverflow.com/a/16239689/12154893
+     * @param string $string
+     * @param int $length
+     * @param string $delimiter
+     * @return string
+     */
+    public static function truncate(string $string, int $length, string $delimiter = '...'): string
+    {
+        return mb_strimwidth($string, 0, $length, $delimiter);
+    }
+
+    /**
+     * @see https://stackoverflow.com/a/16239689/12154893
+     * @param string $string
+     * @param int $length
+     * @param string $delimiter
+     * @return string
+     */
+    public static function truncate_word(string $string, int $length, string $delimiter = '...'): string
+    {
+        // we don't want new lines in our preview
+        $text_only_spaces = preg_replace('/\s+/', ' ', $string);
+
+        // truncates the text
+        $text_truncated = mb_substr($text_only_spaces, 0, mb_strpos($text_only_spaces, ' ', $length));
+
+        // prevents last word truncation
+        $preview = trim(mb_substr($text_truncated, 0, mb_strrpos($text_truncated, ' '))) . $delimiter;
+
+        return $preview;
+    }
+
+    /**
+     * @see https://stackoverflow.com/a/2955878/12154893
+     * @param string $string
+     * @return string
+     */
+    public static function slugify(string $string): string
+    {
+        // replace non letter or digits by -
+        $text = preg_replace('~[^\pL\d]+~u', '-', $text);
+
+        // transliterate
+        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+
+        // remove unwanted characters
+        $text = preg_replace('~[^-\w]+~', '', $text);
+
+        // trim
+        $text = trim($text, '-');
+
+        // remove duplicate -
+        $text = preg_replace('~-+~', '-', $text);
+
+        // lowercase
+        $text = strtolower($text);
+
+        if (empty($text)) {
+            return 'n-a';
+        }
+
+        return $text;
     }
 }

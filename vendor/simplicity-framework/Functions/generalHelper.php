@@ -137,63 +137,24 @@ if (!function_exists('e')) {
     }
 }
 
-if (!function_exists('truncate')) {
+
+
+if (!function_exists('hexentities')) {
     /**
-     * @see https://stackoverflow.com/a/16239689/12154893
+     * To convert a string to hex value like convert 
+     * email address to hex to prevent spam bots to 
+     * index them and etc.
+     * 
+     * @see https://www.php.net/manual/en/function.bin2hex.php#48861
+     * @param $str
+     * @return string
      */
-    function truncate(string $string, int $length, string $delimiter = '...'): string
+    function hexentities($str): string
     {
-        return mb_strimwidth($string, 0, $length, $delimiter);
-    }
-}
-
-if (!function_exists('truncate_word')) {
-    /**
-     * @see https://stackoverflow.com/a/16239689/12154893
-     */
-    function truncate_word(string $string, int $length, string $delimiter = '...'): string
-    {
-        // we don't want new lines in our preview
-        $text_only_spaces = preg_replace('/\s+/', ' ', $string);
-
-        // truncates the text
-        $text_truncated = mb_substr($text_only_spaces, 0, mb_strpos($text_only_spaces, ' ', $length));
-
-        // prevents last word truncation
-        $preview = trim(mb_substr($text_truncated, 0, mb_strrpos($text_truncated, ' '))) . $delimiter;
-
-        return $preview;
-    }
-}
-
-if (!function_exists('slugify')) {
-    /**
-     * @see https://stackoverflow.com/a/2955878/12154893
-     */
-    function slugify(string $string): string
-    {
-        // replace non letter or digits by -
-        $text = preg_replace('~[^\pL\d]+~u', '-', $text);
-
-        // transliterate
-        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
-
-        // remove unwanted characters
-        $text = preg_replace('~[^-\w]+~', '', $text);
-
-        // trim
-        $text = trim($text, '-');
-
-        // remove duplicate -
-        $text = preg_replace('~-+~', '-', $text);
-
-        // lowercase
-        $text = strtolower($text);
-
-        if (empty($text)) {
-            return 'n-a';
+        $return = '';
+        for ($i = 0; $i < strlen($str); $i++) {
+            $return .= '&#x' . bin2hex(substr($str, $i, 1)) . ';';
         }
-
-        return $text;
+        return $return;
     }
 }
