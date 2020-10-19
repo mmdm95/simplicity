@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "186fdbfa0c2db38c2e46a8035cb541e4",
+    "content-hash": "280ae4af44da0f1898f07e8b10b62dfb",
     "packages": [
         {
             "name": "aura/sql",
@@ -295,16 +295,16 @@
         },
         {
             "name": "mmdm/sim-auth",
-            "version": "v0.1.1",
+            "version": "v0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mmdm95/sim-auth.git",
-                "reference": "d42a00026e0d519c034a43ed692953712f6a71f9"
+                "reference": "0dec73a9db2d70fcea67874976f004e3acf17c8d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mmdm95/sim-auth/zipball/d42a00026e0d519c034a43ed692953712f6a71f9",
-                "reference": "d42a00026e0d519c034a43ed692953712f6a71f9",
+                "url": "https://api.github.com/repos/mmdm95/sim-auth/zipball/0dec73a9db2d70fcea67874976f004e3acf17c8d",
+                "reference": "0dec73a9db2d70fcea67874976f004e3acf17c8d",
                 "shasum": ""
             },
             "require": {
@@ -334,7 +334,7 @@
                 }
             ],
             "description": "A simple yet nice authentication library",
-            "time": "2020-10-17T00:27:25+00:00"
+            "time": "2020-10-19T17:13:59+00:00"
         },
         {
             "name": "mmdm/sim-benchmark",
