@@ -2,7 +2,7 @@
 
 namespace App\Logic\Controllers;
 
-use App\Logic\Handler\ResourceHandler;
+use App\Logic\Handlers\ResourceHandler;
 use Pecee\Controllers\IResourceController;
 use Sim\Abstracts\Mvc\Controller\AbstractController;
 
@@ -40,7 +40,12 @@ class ResourceController extends AbstractController implements IResourceControll
      */
     public function store(): ?string
     {
+        $data = new ResourceHandler();
 
+        // fill data
+
+        \response()->json($data->getReturnData());
+        return null;
     }
 
     /**
