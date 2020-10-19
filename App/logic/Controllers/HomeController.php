@@ -2,7 +2,6 @@
 
 namespace App\Logic\Controllers;
 
-use App\Logic\Models\Model;
 use Sim\Abstracts\Mvc\Controller\AbstractController;
 
 class HomeController extends AbstractController
