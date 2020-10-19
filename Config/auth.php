@@ -75,6 +75,22 @@ return [
                     'ADD CONSTRAINT UC_Username UNIQUE (id,username)',
                 ],
             ],
+            'api_keys' => [
+                'table_name' => 'api_keys',
+                'columns' => [
+                    'id' => 'id',
+                    'username' => 'username',
+                    'api_key' => 'api_key',
+                ],
+                'types' => [
+                    'id' => 'INT(11) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT',
+                    'username' => 'VARCHAR(20) NOT NULL',
+                    'api_key' => 'VARCHAR(255) NOT NULL',
+                ],
+                'constraints' => [
+                    'ADD CONSTRAINT UC_AK_Username UNIQUE (id,username)',
+                ],
+            ],
             'roles' => [
                 'table_name' => 'roles',
                 'columns' => [
@@ -120,6 +136,23 @@ return [
                     'ADD CONSTRAINT fk_urp_r FOREIGN KEY(role_id) REFERENCES roles(id)',
                 ],
             ],
+            'api_key_role' => [
+                'table_name' => 'api_key_role',
+                'columns' => [
+                    'id' => 'id',
+                    'api_key_id' => 'api_key_id',
+                    'role_id' => 'role_id',
+                ],
+                'types' => [
+                    'id' => 'INT(11) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT',
+                    'api_key_id' => 'INT(11) UNSIGNED NOT NULL',
+                    'role_id' => 'INT(11) UNSIGNED NOT NULL',
+                ],
+                'constraints' => [
+                    'ADD CONSTRAINT fk_akr_ak FOREIGN KEY(api_key_id) REFERENCES api_keys(id)',
+                    'ADD CONSTRAINT fk_akr_r FOREIGN KEY(role_id) REFERENCES roles(id)',
+                ],
+            ],
             'role_res_perm' => [
                 'table_name' => 'role_res_perm',
                 'columns' => [
@@ -136,7 +169,7 @@ return [
                 ],
                 'constraints' => [
                     'ADD CONSTRAINT fk_rpp_r FOREIGN KEY(role_id) REFERENCES roles(id)',
-                    'ADD CONSTRAINT fk_rpp_pa FOREIGN KEY(resource_id) REFERENCES resources(id)',
+                    'ADD CONSTRAINT fk_rpp_res FOREIGN KEY(resource_id) REFERENCES resources(id)',
                 ],
             ],
             'user_res_perm' => [
@@ -157,7 +190,7 @@ return [
                 ],
                 'constraints' => [
                     'ADD CONSTRAINT fk_upp_u FOREIGN KEY(user_id) REFERENCES users(id)',
-                    'ADD CONSTRAINT fk_upp_pa FOREIGN KEY(resource_id) REFERENCES resources(id)',
+                    'ADD CONSTRAINT fk_upp_res FOREIGN KEY(resource_id) REFERENCES resources(id)',
                 ],
             ],
             'sessions' => [
