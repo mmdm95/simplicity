@@ -192,6 +192,7 @@ vendor/*
 resource/*
 !resource/.keep
 .env
+.js.env
 node_modules
 build/*
 !build/manifest.json

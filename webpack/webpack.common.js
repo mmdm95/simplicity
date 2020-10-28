@@ -1,4 +1,5 @@
 const path = require("path");
+const webpack = require('webpack');
 /**
  * if you want to change a path please consider that
  * this plugin will delete all files inside that path
@@ -7,6 +8,9 @@ const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const ManifestPlugin = require('webpack-manifest-plugin');
+const dotenv = require('dotenv').config({
+    path: path.join(__dirname, '.js.env')
+});
 
 module.exports = {
     entry: {
@@ -47,7 +51,10 @@ module.exports = {
         new ManifestPlugin({
             fileName: "manifest.json"
         }),
-        new CleanWebpackPlugin()
+        new CleanWebpackPlugin(),
+        new webpack.DefinePlugin( {
+            "process.env": dotenv.parsed
+        } ),
     ],
     module: {
         rules: [
