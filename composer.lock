@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "280ae4af44da0f1898f07e8b10b62dfb",
+    "content-hash": "7eaceee7ac0bb1ae38c67a4eacedff47",
     "packages": [
         {
             "name": "aura/sql",
@@ -750,6 +750,45 @@
             ],
             "description": "A simple yet nice form library",
             "time": "2020-10-06T00:23:10+00:00"
+        },
+        {
+            "name": "mmdm/sim-hit-counter",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mmdm95/sim-hit-counter.git",
+                "reference": "d8c7658d8a33f31da425bd76485d0823660117b9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mmdm95/sim-hit-counter/zipball/d8c7658d8a33f31da425bd76485d0823660117b9",
+                "reference": "d8c7658d8a33f31da425bd76485d0823660117b9",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-pdo": "*",
+                "jenssegers/agent": "^2.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Sim\\HitCounter\\": "src/",
+                    "Sim\\HitCounter\\Config\\": "src/_Config/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "MMDM",
+                    "email": "mmdehghan95@gmail.com"
+                }
+            ],
+            "description": "A simple yet nice hit counter library",
+            "time": "2020-11-02T19:55:34+00:00"
         },
         {
             "name": "mmdm/sim-i18n",
