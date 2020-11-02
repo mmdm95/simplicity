@@ -84,6 +84,92 @@ class StringUtil
     }
 
     /**
+     * @param int $decimal
+     * @param int $base - max value is 62
+     * @return string
+     */
+    public static function baseNEncode(int $decimal, int $base): string
+    {
+        if (0 === $decimal) {
+            return '0';
+        }
+
+        $s = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $len = min(62, $base);
+        $result = '';
+
+        while ($decimal > 0) {
+            $result = $s[$decimal % $len] . $result;
+            $decimal = (int)($decimal / $len);
+        }
+
+        return $result;
+    }
+
+    /**
+     * @param string $hashed_str
+     * @param int $base - max value is 62
+     * @return int|null
+     */
+    public static function baseNDecode(string $hashed_str, int $base)
+    {
+        $hashedStrLen = strlen($hashed_str);
+        if (empty($hashed_str) || 0 === $hashedStrLen) {
+            return 0;
+        }
+
+        $s = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $len = min(62, $base);
+        $result = 0;
+
+        for ($i = 0; $i < $hashedStrLen; $i++) {
+            $p = strpos($s, $hashed_str[$i]);
+            if (false === $p || $p < 0 || $p >= $base) {
+                return null;
+            }
+            $result += $p * pow($len, $hashedStrLen - $i - 1);
+        }
+
+        return (int)$result;
+    }
+
+    /**
+     * @param int $decimal
+     * @return string
+     */
+    public static function base62Encode(int $decimal): string
+    {
+        return self::baseNEncode($decimal, 62);
+    }
+
+    /**
+     * @param string $hashed_str
+     * @return int|null
+     */
+    public static function base62Decode(string $hashed_str)
+    {
+        self::baseNDecode($hashed_str, 62);
+    }
+
+    /**
+     * @param int $decimal
+     * @return string
+     */
+    public static function base10Encode(int $decimal): string
+    {
+        return self::baseNEncode($decimal, 10);
+    }
+
+    /**
+     * @param string $hashed_str
+     * @return int|null
+     */
+    public static function base10Decode(string $hashed_str)
+    {
+        self::baseNDecode($hashed_str, 10);
+    }
+
+    /**
      * convert arabic and english numbers and arabic specific
      * characters to persian numbers and specific characters
      *
