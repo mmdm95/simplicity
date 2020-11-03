@@ -107,7 +107,11 @@ if (!function_exists('get_ip_address')) {
 }
 
 if (!function_exists('root2url')) {
-    function root2url(string $path)
+    /**
+     * @param string $path
+     * @return string
+     */
+    function root2url(string $path): string
     {
         $separator = '/';
         $baseRoot = str_replace(['\\', '/'], $separator, BASE_ROOT);
@@ -119,7 +123,11 @@ if (!function_exists('root2url')) {
 }
 
 if (!function_exists('url2root')) {
-    function url2root(string $path)
+    /**
+     * @param string $path
+     * @return string
+     */
+    function url2root(string $path): string
     {
         $separator = '/';
         $baseRoot = str_replace(['\\', '/'], $separator, BASE_ROOT);
@@ -131,9 +139,16 @@ if (!function_exists('url2root')) {
 }
 
 if (!function_exists('e')) {
-    function e($string, $flags = ENT_QUOTES, $encoding = 'UTF-8', $double_encode = true)
+    /**
+     * @param $string
+     * @param int $flags
+     * @param string $encoding
+     * @param bool $double_encode
+     * @return string
+     */
+    function e($string, $flags = ENT_QUOTES, $encoding = 'UTF-8', $double_encode = true): string
     {
-        htmlspecialchars($string, $flags, $encoding, $double_encode);
+        return htmlspecialchars($string, $flags, $encoding, $double_encode);
     }
 }
 
@@ -141,10 +156,10 @@ if (!function_exists('e')) {
 
 if (!function_exists('hexentities')) {
     /**
-     * To convert a string to hex value like convert 
-     * email address to hex to prevent spam bots to 
+     * To convert a string to hex value like convert
+     * email address to hex to prevent spam bots to
      * index them and etc.
-     * 
+     *
      * @see https://www.php.net/manual/en/function.bin2hex.php#48861
      * @param $str
      * @return string
