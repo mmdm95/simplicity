@@ -30,37 +30,67 @@ return [
      *       ]
      *
      * NOTE:
+     *   [common] has a key that use inside your specific page
+     *   as [common] key, OK that's confusing look at example below:
+     *
+     *   [
+     *     'common' => [
+     *        'default' => [
+     *           'js' => [
+     *                     'top' => [
+     *                     ],
+     *                     'bottom' => [
+     *                     ],
+     *                   ]
+     *           'css' => css files,
+     *         ]
+     *     ],
+     *     'example-page' => [
+     *       'common' => 'default',
+     *       ...
+     *     ]
+     *   ]
+     *
+     * See, you can have multiple common for each part of your application.
+     * Isn't it cool :)
+     *
+     * NOTE:
      *   1. [common] key just have [js] and [css] keys
-     *   2. key of other items must be name of the file after [design] path
+     *   2. You must use slash (/) to separate folder and files from each other.
+     *   3. key of other items must be name of the file after [design] path
      *     [EXP:
      *       1. Assume that we have a file named [index] in [app/design/view],
      *          so the key name will be [view/index].
      *       2. Now Assume that we have another file named [index] in [app/design/partial/a-folder],
-     *          so the key name will be [partial/a-folder/index].]
-     *   3. BE CAREFUL! If note number 2 is not observe, then the config will not be available.
-     *   4. The config is according to the bigger platform (priority considered here)
+     *          so the key name will be [partial/a-folder/index].
+     *   4. BE CAREFUL! If note number 3 is not observe, then the config will not be available.
+     *   5. The config is according to the bigger platform (priority considered here)
      *     [EXP:
      *       If you don't specified mobile config, it'll get config according to upper device,
      *       that is tablet, and so on.]
-     *   5. It detect which device is trying to get config, automatically for you
-     *   6. BE CAREFUL! Please enter unique js and css file paths,
+     *   6. It detect which device is trying to get config, automatically for you
+     *   7. BE CAREFUL! Please enter unique js and css file paths,
      *      but it try to detect redundant js and css files according to src and href values
-     *   7. Add js and css file as following manner
+     *   8. Add js and css file as following manner
      *     Exp.
-     *      htmlspecialchars('<script type="js type like application/javascript" src="the src"></script>'),
+     *      htmlspecialchars('<script type="js type like text/javascript" src="the src"></script>'),
+     *      e('<script type="js type like text/javascript" src="the src"></script>'),
      */
     'desktop' => [
         'common' => [
-            'js' => [
-                'top' => [
+            'default' => [
+                'js' => [
+                    'top' => [
+                    ],
+                    'bottom' => [
+                    ],
                 ],
-                'bottom' => [
+                'css' => [
                 ],
-            ],
-            'css' => [
             ],
         ],
         'view/index' => [
+            'common' => 'default',
             'js' => [
                 'top' => [
                 ],
@@ -72,26 +102,30 @@ return [
         ],
     ],
     'tablet' => [
-        'common' => [
-            'js' => [
-                'top' => [
+        'default' => [
+            'common' => [
+                'js' => [
+                    'top' => [
+                    ],
+                    'bottom' => [
+                    ],
                 ],
-                'bottom' => [
+                'css' => [
                 ],
-            ],
-            'css' => [
             ],
         ],
     ],
     'mobile' => [
-        'common' => [
-            'js' => [
-                'top' => [
+        'default' => [
+            'common' => [
+                'js' => [
+                    'top' => [
+                    ],
+                    'bottom' => [
+                    ],
                 ],
-                'bottom' => [
+                'css' => [
                 ],
-            ],
-            'css' => [
             ],
         ],
     ],

@@ -108,7 +108,9 @@ trait TraitConfigManager
      */
     public function getDirectly(string $path): array
     {
-        return LoaderSingleton::getInstance()->returnLoadedFile(true)->load_include($path, ILoader::EXT_PHP);
+        $loadedFile = LoaderSingleton::getInstance()->returnLoadedFile(true)->load_include($path, ILoader::EXT_PHP);
+        $loadedFile = !is_array($loadedFile) ? [] : $loadedFile;
+        return $loadedFile;
     }
 
     /**

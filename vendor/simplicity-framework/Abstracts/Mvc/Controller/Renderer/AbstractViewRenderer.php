@@ -88,6 +88,8 @@ abstract class AbstractViewRenderer implements IViewRenderer
 
             // Remove views path from template path
             $mainAlias = str_replace($designPath, '', $templatePath);
+            $mainAlias = str_replace('\\', '/', $mainAlias);
+            $mainAlias = trim($mainAlias, '/');
             // Explode it by dot to remove extension
             $mainAlias = explode('.', $mainAlias);
             // Pop extension out
@@ -97,11 +99,11 @@ abstract class AbstractViewRenderer implements IViewRenderer
 
             // Create variables with platform configs
             $mobileConfig = $includes['mobile'][$mainAlias] ?? [];
-            $mobileCommonConfig = $includes['mobile']['common'] ?? [];
+            $mobileCommonConfig = $includes['mobile']['common'][$mobileConfig['common'] ?? ''] ?? [];
             $tabletConfig = $includes['tablet'][$mainAlias] ?? [];
-            $tabletCommonConfig = $includes['tablet']['common'] ?? [];
+            $tabletCommonConfig = $includes['tablet']['common'][$tabletConfig['common'] ?? ''] ?? [];
             $desktopConfig = $includes['desktop'][$mainAlias] ?? [];
-            $desktopCommonConfig = $includes['desktop']['common'] ?? [];
+            $desktopCommonConfig = $includes['desktop']['common'][$desktopConfig['common'] ?? ''] ?? [];
 
             // Detect which platform must be use
             $agent = new Agent();
