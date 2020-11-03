@@ -15,8 +15,7 @@ class PHPRenderer extends AbstractViewRenderer
     public function renderLayout(): void
     {
         if (!empty($this->layout)) {
-            $content = $this->getContent();
-            $this->rendered = $content;
+            $this->rendered = $this->getContent($this->layout);
         }
     }
 
@@ -26,8 +25,8 @@ class PHPRenderer extends AbstractViewRenderer
      */
     public function renderTemplate(): void
     {
+        $content = $this->getContent($this->template);
         if (empty($this->layout)) {
-            $content = $this->getContent();
             $this->rendered = $content;
         } else {
             $this->arguments['content'] = $content;
@@ -38,14 +37,8 @@ class PHPRenderer extends AbstractViewRenderer
      * @param string $content
      * @return bool
      */
-    protected function getContent(): string
+    protected function getContent(string $filename): string
     {
-        if (empty($this->layout)) {
-            $filename = $this->template;
-        } else {
-            $filename = $this->layout;
-        }
-
         return \loader()->setData($this->arguments)->getContent($filename);
     }
 }
