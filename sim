@@ -4,7 +4,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 use Sim\Command\CleanWebpackFiles;
 use Sim\Command\MoveWebpackFiles;
-use Sim\Core\Bootstrap;
+use App\Bootstrap;
 use Symfony\Component\Console\Application;
 
 $bootstrap = new Bootstrap(false);
