@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7eaceee7ac0bb1ae38c67a4eacedff47",
+    "content-hash": "dff48daecaf68ff25241acbe588a1d34",
     "packages": [
         {
             "name": "aura/sql",
@@ -411,6 +411,45 @@
             ],
             "description": "A simple yet nice captcha library",
             "time": "2020-10-05T19:30:23+00:00"
+        },
+        {
+            "name": "mmdm/sim-cart",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mmdm95/sim-cart.git",
+                "reference": "e080aedd24e0c1add183e63013a7d63f8c6a4f09"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mmdm95/sim-cart/zipball/e080aedd24e0c1add183e63013a7d63f8c6a4f09",
+                "reference": "e080aedd24e0c1add183e63013a7d63f8c6a4f09",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-pdo": "*",
+                "mmdm/sim-cookie": "^1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Sim\\Cart\\": "src/",
+                    "Sim\\Cart\\Config\\": "src/_Config/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "MMDM",
+                    "email": "mmdehghan95@gmail.com"
+                }
+            ],
+            "description": "A simple yet nice shopping cart library",
+            "time": "2020-10-30T14:07:00+00:00"
         },
         {
             "name": "mmdm/sim-container",

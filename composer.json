@@ -46,6 +46,7 @@
     "vlucas/phpdotenv": "^5.1",
     "voku/anti-xss": "^4.1",
     "symfony/console": "^5.1",
-    "predis/predis": "v1.1.6"
+    "predis/predis": "v1.1.6",
+    "mmdm/sim-cart": "^1.0"
   }
 }

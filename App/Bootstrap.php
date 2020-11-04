@@ -10,18 +10,17 @@ use App\Logic\Helper as HelperDefinition;
 
 use Sim\ConfigManager\ConfigManager;
 use Sim\ConfigManager\ConfigManagerSingleton;
+
 use Sim\Container\Container;
 use Sim\Container\Exceptions\MethodNotFoundException;
 use Sim\Container\Exceptions\ParameterHasNoDefaultValueException;
 use Sim\Container\Exceptions\ServiceNotFoundException;
 use Sim\Container\Exceptions\ServiceNotInstantiableException;
 
-use Sim\Cookie\Cookie;
-
-use Sim\Crypt\Crypt;
 use Sim\Event\Emitter;
+
 use Sim\Handler\ErrorHandler;
-use Sim\I18n\Translate;
+
 use Sim\Interfaces\ConfigManager\IConfig;
 use Sim\Interfaces\IFileNotExistsException;
 use Sim\Interfaces\IInvalidVariableNameException;
@@ -32,7 +31,6 @@ use Sim\Loader\Loader;
 
 use Sim\Loader\LoaderSingleton;
 use Sim\Logger\Logger;
-use Sim\Session\Session as Session;
 
 use Pecee\Http\Middleware\BaseCsrfVerifier;
 use Pecee\SimpleRouter\SimpleRouter as Router;
@@ -130,6 +128,19 @@ class Bootstrap
      */
     protected function init()
     {
+        // Load .env variables
+        $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
+        $dotenv->load();
+
+        // Validate .env variables
+        $dotenv->required('APP_MAIN_KEY')->notEmpty();
+        $dotenv->required('APP_ASSURED_KEY')->notEmpty();
+        $dotenv->required('DB_HOST')->notEmpty();
+        $dotenv->required('DB_NAME')->notEmpty();
+        $dotenv->required('DB_USERNAME')->notEmpty();
+        $dotenv->required('DB_PASSWORD');
+        $dotenv->required('DB_PORT')->isInteger();
+
         // Needed helpers
         $this->loadHelper();
 
@@ -148,28 +159,7 @@ class Bootstrap
         $this->path = \path();
         $this->config = \config();
 
-        // Call needed functionality
-        $this->defineConfig();
-        $this->definePath();
-        // only for none route (without CLI) cases
-        if ($this->route_needed) {
-            $this->defineEvents();
-            $this->defineContainer();
-        }
-
-        // Load .env variables
-        $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
-        $dotenv->load();
-
-        // Validate .env variables
-        $dotenv->required('APP_MAIN_KEY')->notEmpty();
-        $dotenv->required('APP_ASSURED_KEY')->notEmpty();
-        $dotenv->required('DB_HOST')->notEmpty();
-        $dotenv->required('DB_NAME')->notEmpty();
-        $dotenv->required('DB_USERNAME')->notEmpty();
-        $dotenv->required('DB_PASSWORD');
-        $dotenv->required('DB_PORT')->isInteger();
-
+        // set env variable as config
         $this->config->setAsConfig('env', [
             'APP_MAIN_KEY' => $_ENV['APP_MAIN_KEY'],
             'APP_ASSURED_KEY' => $_ENV['APP_ASSURED_KEY'],
@@ -179,6 +169,15 @@ class Bootstrap
             'DB_PASSWORD' => $_ENV['DB_PASSWORD'],
             'DB_PORT' => $_ENV['DB_PORT'],
         ]);
+
+        // Call needed functionality
+        $this->defineConfig();
+        $this->definePath();
+        // only for none route (without CLI) cases
+        if ($this->route_needed) {
+            $this->defineEvents();
+            $this->defineContainer();
+        }
     }
 
     /**
@@ -299,37 +298,8 @@ class Bootstrap
     {
         // Define container's object(s)
 
-        \container()->set(Crypt::class, function () {
-            return new Crypt($this->config->get('security.main_key'),
-                $this->config->get('security.assured_key'));
-        });
-
-        \container()->set(Session::class, function (Container $c) {
-            return new Session($c->get(Crypt::class));
-        });
-
-        \container()->set(Cookie::class, function (Container $c) {
-            return new Cookie($c->get(Crypt::class));
-        });
-
         \container()->set(ErrorHandler::class, function (Container $c) {
             return new ErrorHandler($c->get(ConfigManager::class), $c->get(Loader::class), $c->get(Logger::class));
-        });
-
-        \container()->set(Translate::class, function () {
-            $translate = new Translate();
-            $translateConfig = config()->get('i18n');
-            if (!is_null($translateConfig)) {
-                /** @var array $translateConfig */
-                $translate->setTranslateDir($translateConfig['language_dir'] ?? '')
-                    ->setLocale($translateConfig['language'] ?? '');
-
-                if ((bool)config()->get('i18n.is_rtl') === true) {
-                    $translate->itIsRTL();
-                }
-            }
-
-            return $translate;
         });
 
         // Read all container objects that defined by user
