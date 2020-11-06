@@ -132,8 +132,10 @@ abstract class AbstractViewRenderer implements IViewRenderer
                 $commonAliasInclude = $desktopCommonConfig;
             }
 
+            var_dump($commonAliasInclude, $mainAliasInclude);
+
             // Mix Main and Common in one place
-            $mainAliasInclude = array_replace_recursive($commonAliasInclude, $mainAliasInclude);
+            $mainAliasInclude = array_merge_recursive($commonAliasInclude, $mainAliasInclude);
 
             if ($isMobile || $isTablet) {
                 // Replace required js and css and other things that are not string with merged one
