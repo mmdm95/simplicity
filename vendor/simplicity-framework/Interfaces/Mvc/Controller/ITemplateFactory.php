@@ -39,14 +39,6 @@ interface ITemplateFactory extends IRenderer
     public function getTemplate(): string;
 
     /**
-     * If don't need any layout, send this function a true argument
-     *
-     * @param bool $answer
-     * @return ITemplateFactory
-     */
-    public function isIndividual(bool $answer): ITemplateFactory;
-
-    /**
      * If the page must be render as json string or not
      *
      * @param bool $answer

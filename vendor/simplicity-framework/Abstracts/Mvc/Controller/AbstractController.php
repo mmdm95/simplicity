@@ -29,7 +29,7 @@ abstract class AbstractController implements ITemplateFactory, ITemplateRenderer
     /**
      * @var $layout string
      */
-    protected $layout;
+    protected $layout = '';
 
     /**
      * @var $template string
@@ -92,10 +92,6 @@ abstract class AbstractController implements ITemplateFactory, ITemplateRenderer
     {
         $this->config = config();
         //-----
-        $routerConfig = $this->config->get('router');
-        $this->setLayout(isset($routerConfig['def_layout']) && is_string($routerConfig['def_layout']) && !empty($routerConfig['def_layout']) ? $routerConfig['def_layout'] : null);
-        $this->setTemplate(isset($routerConfig['def_template']) ? (string)$routerConfig['def_template'] : '');
-        //-----
         $this->is_in_production = (0 == (($this->config->get('main.mode') ?? MODE_PRODUCTION) ^ MODE_PRODUCTION));
     }
 
@@ -149,20 +145,6 @@ abstract class AbstractController implements ITemplateFactory, ITemplateRenderer
     public function getTemplate(): string
     {
         return (string)$this->template;
-    }
-
-    /**
-     * If don't need any layout, send this function a true argument
-     *
-     * @param bool $answer
-     * @return ITemplateFactory
-     */
-    public function isIndividual(bool $answer): ITemplateFactory
-    {
-        if (true === $answer) {
-            $this->setLayout('');
-        }
-        return $this;
     }
 
     /**
