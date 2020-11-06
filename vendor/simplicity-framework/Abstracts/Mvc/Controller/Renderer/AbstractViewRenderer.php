@@ -132,8 +132,6 @@ abstract class AbstractViewRenderer implements IViewRenderer
                 $commonAliasInclude = $desktopCommonConfig;
             }
 
-            var_dump($commonAliasInclude, $mainAliasInclude);
-
             // Mix Main and Common in one place
             $mainAliasInclude = array_merge_recursive($commonAliasInclude, $mainAliasInclude);
 
