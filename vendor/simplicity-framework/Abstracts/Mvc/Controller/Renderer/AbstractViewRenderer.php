@@ -99,11 +99,13 @@ abstract class AbstractViewRenderer implements IViewRenderer
 
             // Create variables with platform configs
             $mobileConfig = $includes['mobile'][$mainAlias] ?? [];
-            $mobileCommonConfig = $includes['mobile']['common'][$mobileConfig['common'] ?? ''] ?? [];
+            $mobileCommonConfig = $this->detectConfigCommons($includes['mobile'], $mobileConfig);
+
             $tabletConfig = $includes['tablet'][$mainAlias] ?? [];
-            $tabletCommonConfig = $includes['tablet']['common'][$tabletConfig['common'] ?? ''] ?? [];
+            $tabletCommonConfig = $this->detectConfigCommons($includes['tablet'], $tabletConfig);
+
             $desktopConfig = $includes['desktop'][$mainAlias] ?? [];
-            $desktopCommonConfig = $includes['desktop']['common'][$desktopConfig['common'] ?? ''] ?? [];
+            $desktopCommonConfig = $this->detectConfigCommons($includes['desktop'], $desktopConfig);
 
             // Detect which platform must be use
             $agent = new Agent();
@@ -273,6 +275,30 @@ abstract class AbstractViewRenderer implements IViewRenderer
                 $this->arguments[$key] = $value;
             }
         }
+    }
+
+    /**
+     * @param array $includes
+     * @param array $config
+     * @return array
+     */
+    protected function detectConfigCommons(array $includes, array $config): array
+    {
+        $common = [];
+
+        if (isset($config['common'])) {
+            if (is_array($config['common'])) {
+                foreach ($config['common'] as $commonName) {
+                    if (is_string($commonName)) {
+                        $common = array_merge_recursive($common, $includes['common'][$commonName] ?? []);
+                    }
+                }
+            } elseif (is_string($config['common'])) {
+                $common = $includes['common'][$config['common']] ?? [];
+            }
+        }
+
+        return $common;
     }
 
     /**

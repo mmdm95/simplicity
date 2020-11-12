@@ -24,7 +24,14 @@ return [
      *               'etc.' => ...
      *           ],
      *           'css' => [
-     *               ...
+     *               'top' => [
+     *                   ...
+     *               ],
+     *               'bottom' => [
+     *                   ...
+     *               ],
+     *               'title' => 'The Title',
+     *               'etc.' => ...
      *           ],
      *           'etc.' => ...
      *       ]
@@ -41,12 +48,17 @@ return [
      *                     ],
      *                     'bottom' => [
      *                     ],
-     *                   ]
-     *           'css' => css files,
+     *                   ],
+     *           'css' => [
+     *                     'top' => [
+     *                     ],
+     *                     'bottom' => [
+     *                     ],
+     *                   ],
      *         ]
      *     ],
      *     'example-page' => [
-     *       'common' => 'default',
+     *       'common' => 'default' or array of common like ['default', 'admin'],
      *       ...
      *     ]
      *   ]
