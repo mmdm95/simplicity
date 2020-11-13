@@ -55,8 +55,7 @@ trait TraitLoader
      */
     public function load(string $filename, ?string $ext = null, int $type = ILoader::TYPE_INCLUDE)
     {
-        $this->_load($filename, $ext, $type, true);
-        $this->setData([]);
+        $this->_load($filename, $ext, $type);
         return $this;
     }
 
@@ -70,7 +69,6 @@ trait TraitLoader
     public function loadNReturn(string $filename, string $ext = null, int $type = ILoader::TYPE_INCLUDE)
     {
         $loadedFile = $this->_load($filename, $ext, $type, true);
-        $this->setData([]);
         return $loadedFile;
     }
 
