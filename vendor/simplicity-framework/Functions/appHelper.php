@@ -30,7 +30,11 @@ if (!function_exists('connector')) {
 if (!function_exists('loader')) {
     function loader(): Loader
     {
-        return \container()->get(Loader::class);
+        /**
+         * @var \Sim\Traits\TraitLoader $loader
+         */
+        $loader = \container()->get(Loader::class);
+        return $loader;
     }
 }
 

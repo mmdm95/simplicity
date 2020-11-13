@@ -35,33 +35,149 @@ trait TraitLoader
     protected $data = [];
 
     /**
-     * @var $type string
+     * @var int $default_type
      */
-    protected $type = ILoader::TYPE_INCLUDE;
+    protected $default_type = ILoader::TYPE_INCLUDE;
 
     /**
      * @var $extension string
      */
-    protected $extension = ILoader::EXT_PHP;
-
-    /**
-     * @var bool $return_loaded_file
-     */
-    protected $return_loaded_file = false;
+    protected $default_extension = ILoader::EXT_PHP;
 
     /**
      * Load a specific file with its filename
      *
      * @param string $filename
-     * @param string $ext
-     * @param null $type
-     * @return mixed
+     * @param string|null $ext
+     * @param int $type
+     * @return static
      * @throws IFileNotExistsException
      */
-    public function load(string $filename, string $ext = null, $type = null)
+    public function load(string $filename, ?string $ext = null, int $type = ILoader::TYPE_INCLUDE)
     {
-        $filename = $this->addExtensionIfNotExist($filename, $ext, $this->extension, $this->allowed_extensions);
-        $type = $this->_isValidType($type) ? $type : $this->type;
+        $this->_load($filename, $ext, $type, true);
+        $this->setData([]);
+        return $this;
+    }
+
+    /**
+     * @param string $filename
+     * @param string|null $ext
+     * @param int $type
+     * @return mixed
+     * @throws FileNotExistsException
+     */
+    public function loadNReturn(string $filename, string $ext = null, int $type = ILoader::TYPE_INCLUDE)
+    {
+        $loadedFile = $this->_load($filename, $ext, $type, true);
+        $this->setData([]);
+        return $loadedFile;
+    }
+
+    /**
+     * @param string $filename
+     * @param string|null $ext
+     * @return mixed|static
+     * @throws IFileNotExistsException
+     */
+    public function load_include(string $filename, string $ext = null, bool $return_result = false)
+    {
+        if ($return_result) {
+            return $this->loadNReturn($filename, $ext, ILoader::TYPE_INCLUDE);
+        } else {
+            return $this->load($filename, $ext, ILoader::TYPE_INCLUDE);
+        }
+    }
+
+    /**
+     * @param string $filename
+     * @param string|null $ext
+     * @return mixed|static
+     * @throws IFileNotExistsException
+     */
+    public function load_include_once(string $filename, string $ext = null, bool $return_result = false)
+    {
+        if ($return_result) {
+            return $this->loadNReturn($filename, $ext, ILoader::TYPE_INCLUDE_ONCE);
+        } else {
+            return $this->load($filename, $ext, ILoader::TYPE_INCLUDE_ONCE);
+        }
+    }
+
+    /**
+     * @param string $filename
+     * @param string|null $ext
+     * @return mixed|static
+     * @throws IFileNotExistsException
+     */
+    public function load_require(string $filename, string $ext = null, bool $return_result = false)
+    {
+        if ($return_result) {
+            return $this->loadNReturn($filename, $ext, ILoader::TYPE_REQUIRE);
+        } else {
+            return $this->load($filename, $ext, ILoader::TYPE_REQUIRE);
+        }
+    }
+
+    /**
+     * @param string $filename
+     * @param string|null $ext
+     * @return mixed|static
+     * @throws IFileNotExistsException
+     */
+    public function load_require_once(string $filename, string $ext = null, bool $return_result = false)
+    {
+        if ($return_result) {
+            return $this->loadNReturn($filename, $ext, ILoader::TYPE_REQUIRE_ONCE);
+        } else {
+            return $this->load($filename, $ext, ILoader::TYPE_REQUIRE_ONCE);
+        }
+    }
+
+    /**
+     * Get content of a file as string
+     *
+     * @param string $filename
+     * @param string|null $ext
+     * @return string
+     * @throws IFileNotExistsException
+     */
+    public function getContent(string $filename, string $ext = null)
+    {
+        ob_start();
+        extract($this->data);
+        $this->load_include($filename, $ext);
+        $result = ob_get_contents();
+        ob_end_clean();
+        $this->setData([]);
+        return $result;
+    }
+
+    /**
+     * Set data to pass included file.
+     * Note: Use this function before load() method
+     *
+     * @param array $data
+     * @return static
+     */
+    public function setData(array $data = [])
+    {
+        $this->data = is_array($data) ? $data : [];
+        return $this;
+    }
+
+    /**
+     * @param string $filename
+     * @param string|null $ext
+     * @param int $type
+     * @param bool $return_loaded_file
+     * @return mixed|static
+     * @throws FileNotExistsException
+     */
+    private function _load(string $filename, string $ext = null, $type = ILoader::TYPE_INCLUDE, bool $return_loaded_file = false)
+    {
+        $filename = $this->addExtensionIfNotExist($filename, $ext, $this->default_extension, $this->allowed_extensions);
+        $type = $this->_isValidType($type) ? $type : $this->default_type;
 
         if (!file_exists((string)$filename)) {
             throw new FileNotExistsException($filename);
@@ -86,123 +202,9 @@ trait TraitLoader
                 $return = include $filename . '';
                 break;
         }
-        $return = $this->return_loaded_file ? $return : $this;
-        $this->returnLoadedFile(false);
+        $return = $return_loaded_file ? $return : $this;
         $this->setData([]);
         return $return;
-    }
-
-    /**
-     * @param string $filename
-     * @param string|null $ext
-     * @return mixed
-     * @throws IFileNotExistsException
-     */
-    public function load_include(string $filename, string $ext = null)
-    {
-        return $this->load($filename, $ext, ILoader::TYPE_INCLUDE);
-    }
-
-    /**
-     * @param string $filename
-     * @param string|null $ext
-     * @return mixed
-     * @throws IFileNotExistsException
-     */
-    public function load_include_once(string $filename, string $ext = null)
-    {
-        return $this->load($filename, $ext, ILoader::TYPE_INCLUDE_ONCE);
-    }
-
-    /**
-     * @param string $filename
-     * @param string|null $ext
-     * @return mixed
-     * @throws IFileNotExistsException
-     */
-    public function load_require(string $filename, string $ext = null)
-    {
-        return $this->load($filename, $ext, ILoader::TYPE_REQUIRE);
-    }
-
-    /**
-     * @param string $filename
-     * @param string|null $ext
-     * @return mixed
-     * @throws IFileNotExistsException
-     */
-    public function load_require_once(string $filename, string $ext = null)
-    {
-        return $this->load($filename, $ext, ILoader::TYPE_REQUIRE_ONCE);
-    }
-
-    /**
-     * Get content of a file as string
-     *
-     * @param string $filename
-     * @param string|null $ext
-     * @return string
-     * @throws IFileNotExistsException
-     */
-    public function getContent(string $filename, string $ext = null)
-    {
-        ob_start();
-        extract($this->data);
-        $this->load_include($filename, $ext);
-        $result = ob_get_contents();
-        ob_end_clean();
-        $this->setData([]);
-        return $result;
-    }
-
-    /**
-     * @param int $type
-     * @return static
-     */
-    public function setType($type = ILoader::TYPE_INCLUDE)
-    {
-        $this->type = $this->_isValidType($type) ? $type : ILoader::TYPE_INCLUDE;
-        return $this;
-    }
-
-    /**
-     * Set data to pass included file.
-     * Note: Use this function before load() method
-     *
-     * @param array $data
-     * @return static
-     */
-    public function setData(array $data = [])
-    {
-        $this->data = is_array($data) ? $data : [];
-        return $this;
-    }
-
-    /**
-     * Set default file extension
-     *
-     * @param string $ext
-     * @return static
-     */
-    public function setExtension($ext = ILoader::EXT_PHP)
-    {
-        $ext = mb_strtolower((string)$ext);
-        if (in_array($ext, $this->allowed_extensions)) {
-            $this->extension = $ext;
-        }
-        return $this;
-    }
-
-    /**
-     * Return loaded file or just load it
-     *
-     * @param bool $answer
-     * @return static
-     */
-    public function returnLoadedFile($answer = false)
-    {
-        $this->return_loaded_file = (bool)$answer;
-        return $this;
     }
 
     /**

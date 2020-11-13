@@ -76,6 +76,7 @@ trait TraitConfigManager
     public function get($alias)
     {
         $arr = explode('.', $alias);
+        $keys = null;
         $alias = array_shift($arr);
         if (count($arr) >= 1) {
             $keys = implode('.', $arr);
@@ -83,7 +84,7 @@ trait TraitConfigManager
 
         $this->isValidAliasName($alias);
         if (isset(self::$loaded_configs[$alias])) {
-            if (!isset($keys)) return self::$loaded_configs[$alias];
+            if (is_null($keys)) return self::$loaded_configs[$alias];
             return ArrayUtil::get(self::$loaded_configs[$alias], $keys);
         }
 
@@ -95,7 +96,7 @@ trait TraitConfigManager
         $config = $this->getDirectly(self::$config[$alias]);
         self::$loaded_configs[$alias] = $config;
 
-        if (!isset($keys)) return $config;
+        if (is_null($keys)) return $config;
         return ArrayUtil::get($config, $keys);
     }
 
@@ -108,7 +109,7 @@ trait TraitConfigManager
      */
     public function getDirectly(string $path): array
     {
-        $loadedFile = LoaderSingleton::getInstance()->returnLoadedFile(true)->load_include($path, ILoader::EXT_PHP);
+        $loadedFile = LoaderSingleton::getInstance()->load_include($path, ILoader::EXT_PHP, true);
         $loadedFile = !is_array($loadedFile) ? [] : $loadedFile;
         return $loadedFile;
     }
