@@ -13,6 +13,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/mmdm/sim-auth" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/mmdm/sim-benchmark" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/mmdm/sim-captcha" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/mmdm/sim-cart" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/mmdm/sim-container" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/mmdm/sim-cookie" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/mmdm/sim-crypt" />
