@@ -12,9 +12,9 @@ interface ITemplateFactory extends IRenderer
      * Set layout of view
      *
      * @param $path
-     * @return ITemplateFactory
+     * @return static
      */
-    public function setLayout($path): ITemplateFactory;
+    public function setLayout($path);
 
     /**
      * Get view layout
@@ -27,9 +27,9 @@ interface ITemplateFactory extends IRenderer
      * Set template of view
      *
      * @param $path
-     * @return ITemplateFactory
+     * @return static
      */
-    public function setTemplate($path): ITemplateFactory;
+    public function setTemplate($path);
 
     /**
      * Get view template
@@ -42,16 +42,16 @@ interface ITemplateFactory extends IRenderer
      * If the page must be render as json string or not
      *
      * @param bool $answer
-     * @return ITemplateFactory
+     * @return static
      */
-    public function isJson(bool $answer): ITemplateFactory;
+    public function isJson(bool $answer);
 
     /**
      * Set middleware for current route
      *
      * @param AbstractMiddleware $middleWare
      * @param array $parameters
-     * @return ITemplateFactory
+     * @return static
      */
-    public function setMiddleWare(AbstractMiddleware $middleWare, $parameters = []): ITemplateFactory;
+    public function setMiddleWare(AbstractMiddleware $middleWare, array $parameters = []);
 }

@@ -37,6 +37,11 @@ abstract class AbstractController implements ITemplateFactory, ITemplateRenderer
     protected $template;
 
     /**
+     * @var array $default_arguments
+     */
+    protected $default_arguments = [];
+
+    /**
      * @var $middleware AbstractMiddleWare
      */
     protected $middleware;
@@ -99,9 +104,9 @@ abstract class AbstractController implements ITemplateFactory, ITemplateRenderer
      * Set layout of view
      *
      * @param $path
-     * @return ITemplateFactory
+     * @return static
      */
-    public function setLayout($path): ITemplateFactory
+    public function setLayout($path)
     {
         if (!is_null($path)) {
             if (empty($path)) {
@@ -127,9 +132,9 @@ abstract class AbstractController implements ITemplateFactory, ITemplateRenderer
      * Set template of view
      *
      * @param $path
-     * @return ITemplateFactory
+     * @return static
      */
-    public function setTemplate($path): ITemplateFactory
+    public function setTemplate($path)
     {
         if (!empty($path)) {
             $this->template = $this->addExtensionIfNotExist(design_path($path, false), $this->defaultExtension, $this->defaultExtension, $this->allowedExtensions);
@@ -148,12 +153,30 @@ abstract class AbstractController implements ITemplateFactory, ITemplateRenderer
     }
 
     /**
+     * @param array $arguments
+     * @return static
+     */
+    public function setDefaultArguments(array $arguments)
+    {
+        $this->default_arguments = $arguments;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getDefaultArguments(): array
+    {
+        return $this->default_arguments;
+    }
+
+    /**
      * If the page must be render as json string or not
      *
      * @param bool $answer
-     * @return ITemplateFactory
+     * @return static
      */
-    public function isJson(bool $answer): ITemplateFactory
+    public function isJson(bool $answer)
     {
         $this->is_json = (bool)$answer;
         return $this;
@@ -164,13 +187,13 @@ abstract class AbstractController implements ITemplateFactory, ITemplateRenderer
      *
      * @param AbstractMiddleware $middleWare
      * @param $parameters
-     * @return ITemplateFactory
+     * @return static
      */
-    public function setMiddleWare(AbstractMiddleware $middleWare, $parameters = []): ITemplateFactory
+    public function setMiddleWare(AbstractMiddleware $middleWare, array $parameters = [])
     {
         if ($middleWare instanceof AbstractMiddleware) {
             $this->middleware = $middleWare;
-            $this->middlewareParameters = is_array($parameters) ? $parameters : [];
+            $this->middlewareParameters = $parameters;
         }
         return $this;
     }
@@ -211,6 +234,8 @@ abstract class AbstractController implements ITemplateFactory, ITemplateRenderer
      */
     public function render(array $arguments = [], $middlewareErrorCallback = null): string
     {
+        $arguments = array_merge_recursive($this->default_arguments, $arguments);
+
         $allow = !$this->hasMiddleware() ? true : $this->middleware->handle(...$this->middlewareParameters);
         if ($allow) {
             // Check if want json string
@@ -300,8 +325,6 @@ abstract class AbstractController implements ITemplateFactory, ITemplateRenderer
     protected function removeMiddleware(): AbstractController
     {
         $this->middleware = null;
-        $this->middlewareLayout = null;
-        $this->middlewareTemplate = null;
         return $this;
     }
 }
