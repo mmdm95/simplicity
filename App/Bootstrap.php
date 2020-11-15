@@ -105,7 +105,7 @@ class Bootstrap
     protected function defineConstants()
     {
         //****** Root Directory *******
-        defined('BASE_ROOT') OR define('BASE_ROOT', dirname(__DIR__) . '/');
+        defined('BASE_ROOT') OR define('BASE_ROOT', str_replace('\\', '/', dirname(__DIR__) . '/'));
 
         //******* Error Handler *******
         defined("E_FATAL") OR define("E_FATAL", E_ERROR | E_USER_ERROR | E_PARSE | E_CORE_ERROR | E_COMPILE_ERROR | E_RECOVERABLE_ERROR);
