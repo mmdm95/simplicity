@@ -57,15 +57,19 @@ return [
 
     // Config file(s) path
     'default_config' => [
-        'main' => __DIR__ . '/config.php',
-        'router' => __DIR__ . '/router.php',
-        'captcha' => __DIR__ . '/captcha.php',
-        'i18n' => __DIR__ . '/i18n.php',
         'auth' => __DIR__ . '/auth.php',
+        'cache' => __DIR__ . '/cache.php',
+        'captcha' => __DIR__ . '/captcha.php',
+        'cart' => __DIR__ . '/cart.php',
+        'main' => __DIR__ . '/config.php',
+        'csrf' => __DIR__ . '/csrf.php',
         'database' => __DIR__ . '/database.php',
+        'hit' => __DIR__ . '/hit-counter.php',
+        'i18n' => __DIR__ . '/i18n.php',
         'log' => __DIR__ . '/log.php',
         'mail' => __DIR__ . '/mail.php',
         'payment' => __DIR__ . '/payment.php',
+        'router' => __DIR__ . '/router.php',
         'security' => __DIR__ . '/security.php',
         // webpack config
         // DO NOT change it at all

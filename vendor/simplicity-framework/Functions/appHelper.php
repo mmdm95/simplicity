@@ -11,6 +11,9 @@ use Sim\I18n\Translate;
 use Sim\Loader\Loader as Loader;
 use Sim\PathManager\PathManager;
 use Sim\Session\Session as Session;
+use Sim\Crypt\Crypt as Crypt;
+use Sim\Cart\Cart as Cart;
+use \Sim\HitCounter\HitCounter as HitCounter;
 use Sim\DBConnector;
 
 if (!function_exists('container')) {
@@ -59,9 +62,31 @@ if (!function_exists('emitter')) {
     }
 }
 
+if (!function_exists('csrf')) {
+    function session(): Crypt
+    {
+        if (!\container()->has(Crypt::class)) {
+            // crypt class
+            \container()->set(Crypt::class, function () {
+                return new Crypt(config()->get('security.main_key'),
+                    config()->get('security.assured_key'));
+            });
+        }
+
+        return \container()->get(Crypt::class);
+    }
+}
+
 if (!function_exists('session')) {
     function session(): Session
     {
+        if (!\container()->has(Session::class)) {
+            // session class
+            \container()->set(Session::class, function (Container $c) {
+                return new Session($c->get(Crypt::class));
+            });
+        }
+
         return \container()->get(Session::class);
     }
 }
@@ -69,6 +94,13 @@ if (!function_exists('session')) {
 if (!function_exists('cookie')) {
     function cookie(): Cookie
     {
+        if (!\container()->has(Cookie::class)) {
+            // cookie class
+            \container()->set(Cookie::class, function (Container $c) {
+                return new Cookie($c->get(Crypt::class));
+            });
+        }
+
         return \container()->get(Cookie::class);
     }
 }
@@ -76,7 +108,12 @@ if (!function_exists('cookie')) {
 if (!function_exists('csrf')) {
     function csrf(): Csrf
     {
-        return \container()->get(Csrf::class);
+        /**
+         * @var Csrf $csrf
+         */
+        $csrf = \container()->get(Csrf::class);
+        $csrf->setExpiration(\config()->get('csrf.expiration') ?? 0);
+        return $csrf;
     }
 }
 
@@ -90,7 +127,55 @@ if (!function_exists('captcha')) {
 if (!function_exists('translate')) {
     function translate(): Translate
     {
-        return container()->get(Translate::class);
+        if (!\container()->has(Translate::class)) {
+            // translator class
+            \container()->set(Translate::class, function () {
+                $translate = new Translate();
+                $translateConfig = config()->get('i18n');
+                if (!is_null($translateConfig)) {
+                    /** @var array $translateConfig */
+                    $translate->setTranslateDir($translateConfig['language_dir'] ?? '')
+                        ->setLocale($translateConfig['language'] ?? '');
+
+                    if ((bool)config()->get('i18n.is_rtl') === true) {
+                        $translate->itIsRTL();
+                    }
+                }
+
+                return $translate;
+            });
+        }
+
+        return \container()->get(Translate::class);
+    }
+}
+
+if (!function_exists('cart')) {
+    function cart(): Cart
+    {
+        if (!\container()->has(Cart::class)) {
+            // cart class
+            \container()->set(Cart::class, function (Resolver $resolver) {
+                $cookie = $resolver->get(Cookie::class);
+                return new Cart(\connector()->getPDO(), $cookie, 0, \config()->get('cart.structure'));
+            });
+        }
+
+        return \container()->get(Cart::class);
+    }
+}
+
+if (!function_exists('hit_counter')) {
+    function hit_counter(): HitCounter
+    {
+        if (!\container()->has(HitCounter::class)) {
+            // hit counter class
+            \container()->set(HitCounter::class, function () {
+                return new HitCounter(\connector()->getPDO(), \config()->get('hit.structure'));
+            });
+        }
+
+        return \container()->get(HitCounter::class);
     }
 }
 
