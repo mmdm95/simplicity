@@ -62,14 +62,14 @@ if (!function_exists('emitter')) {
     }
 }
 
-if (!function_exists('crypt')) {
-    function crypt(): Crypt
+if (!function_exists('cryptographer')) {
+    function cryptographer(): Crypt
     {
         if (!\container()->has(Crypt::class)) {
             // crypt class
             \container()->set(Crypt::class, function () {
-                return new Crypt(config()->get('security.main_key'),
-                    config()->get('security.assured_key'));
+                return new Crypt(\config()->get('security.main_key'),
+                    \config()->get('security.assured_key'));
             });
         }
 
@@ -83,7 +83,7 @@ if (!function_exists('session')) {
         if (!\container()->has(Session::class)) {
             // session class
             \container()->set(Session::class, function () {
-                return new Session(\crypt());
+                return new Session(\cryptographer());
             });
         }
 
@@ -97,7 +97,7 @@ if (!function_exists('cookie')) {
         if (!\container()->has(Cookie::class)) {
             // cookie class
             \container()->set(Cookie::class, function () {
-                return new Cookie(\crypt());
+                return new Cookie(\cryptographer());
             });
         }
 
