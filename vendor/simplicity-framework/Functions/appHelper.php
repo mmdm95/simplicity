@@ -62,8 +62,8 @@ if (!function_exists('emitter')) {
     }
 }
 
-if (!function_exists('csrf')) {
-    function session(): Crypt
+if (!function_exists('crypt')) {
+    function crypt(): Crypt
     {
         if (!\container()->has(Crypt::class)) {
             // crypt class
@@ -82,8 +82,8 @@ if (!function_exists('session')) {
     {
         if (!\container()->has(Session::class)) {
             // session class
-            \container()->set(Session::class, function (Container $c) {
-                return new Session($c->get(Crypt::class));
+            \container()->set(Session::class, function () {
+                return new Session(\crypt());
             });
         }
 
@@ -96,8 +96,8 @@ if (!function_exists('cookie')) {
     {
         if (!\container()->has(Cookie::class)) {
             // cookie class
-            \container()->set(Cookie::class, function (Container $c) {
-                return new Cookie($c->get(Crypt::class));
+            \container()->set(Cookie::class, function () {
+                return new Cookie(\crypt());
             });
         }
 
