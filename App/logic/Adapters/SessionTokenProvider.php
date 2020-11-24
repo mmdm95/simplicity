@@ -2,49 +2,63 @@
 
 namespace App\Logic\Adapters;
 
-use Pecee\Http\Middleware\BaseCsrfVerifier;
 use Pecee\Http\Security\ITokenProvider;
+use Sim\Cookie\Exceptions\CookieException;
+use Sim\Cookie\SetCookie;
+use Sim\Exceptions\ConfigManager\ConfigNotRegisteredException;
+use Sim\Interfaces\IFileNotExistsException;
+use Sim\Interfaces\IInvalidVariableNameException;
 
-class SessionTokenProvider extends BaseCsrfVerifier implements ITokenProvider
+class SessionTokenProvider implements ITokenProvider
 {
-    /**
-     * CSRF validation will be ignored on the following urls.
-     */
-    protected $except = ['/api/*'];
+    const CSRF_KEY = 'CSRF-TOKEN';
 
     /**
      * Refresh existing token
-     * @param string $name
+     * @throws ConfigNotRegisteredException
+     * @throws CookieException
+     * @throws IFileNotExistsException
+     * @throws IInvalidVariableNameException
      * @throws \Exception
      */
-    public function refresh(string $name = null): void
+    public function refresh(): void
     {
-        csrf()->regenerateToken($name);
+        $token = \csrf()->regenerateToken();
+        $csrfExpiration = \config()->get('csrf.expiration') ?? 0;
+        $csrfExpiration = 0 !== $csrfExpiration ? time() + $csrfExpiration : $csrfExpiration;
+        \cookie()->set(new SetCookie(self::CSRF_KEY, $token, $csrfExpiration, '/'));
     }
 
     /**
      * Validate valid CSRF token
      *
      * @param string $token
-     * @param string|null $name
      * @return bool
      * @throws \Exception
      */
-    public function validate(string $token, string $name = null): bool
+    public function validate(string $token): bool
     {
-        return csrf()->validate($token, $name);
+        $token = \cookie()->prepareGetCookieValue($token);
+        return \csrf()->validate($token);
     }
 
     /**
      * Get token token
      *
      * @param string|null $defaultValue
-     * @param string|null $name
      * @return string|null
+     * @throws CookieException
+     * @throws ConfigNotRegisteredException
+     * @throws IFileNotExistsException
+     * @throws IInvalidVariableNameException
      * @throws \Exception
      */
-    public function getToken(?string $defaultValue = null, string $name = null): ?string
+    public function getToken(?string $defaultValue = null): ?string
     {
-        return csrf()->getToken($name) ?? $defaultValue;
+        $token = \csrf()->getToken() ?? $defaultValue;
+        $csrfExpiration = \config()->get('csrf.expiration') ?? 0;
+        $csrfExpiration = 0 !== $csrfExpiration ? time() + $csrfExpiration : $csrfExpiration;
+        \cookie()->set(new SetCookie(self::CSRF_KEY, $token, $csrfExpiration, '/'));
+        return $token;
     }
 }
