@@ -23,7 +23,6 @@
       <path value="$PROJECT_DIR$/vendor/simplicity-framework/Mvc" />
       <path value="$PROJECT_DIR$/vendor/mmdm/sim-fa-sms" />
       <path value="$PROJECT_DIR$/vendor/simplicity-framework/Abstracts" />
-      <path value="$PROJECT_DIR$/vendor/pecee/simple-router" />
       <path value="$PROJECT_DIR$/vendor/vlucas/phpdotenv" />
       <path value="$PROJECT_DIR$/vendor/simplicity-framework/Database" />
       <path value="$PROJECT_DIR$/vendor/mmdm/sim-logger" />
