@@ -11,6 +11,5 @@ class CsrfVerifier extends BaseCsrfVerifier
      */
     protected $except = [
         '/api/*',
-        '/ajax/file-manager/upload',
     ];
 }
