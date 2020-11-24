@@ -118,7 +118,7 @@ class ArrayUtil
      * @param bool $reverseWantedKeys
      * @return array
      */
-    function arrayGroupBy($key, $data, $wantedKeys = [], $reverseWantedKeys = false)
+    public static function arrayGroupBy($key, $data, $wantedKeys = [], $reverseWantedKeys = false)
     {
         $result = array();
 
