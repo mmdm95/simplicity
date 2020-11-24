@@ -110,6 +110,45 @@ class ArrayUtil
     }
 
     /**
+     * Function that groups an array of associative arrays by some key.
+     *
+     * @param string $key Property to sort by.
+     * @param array $data Array that stores multiple associative arrays.
+     * @param array $wantedKeys Array of columns that you need your new grouped array have.
+     * @param bool $reverseWantedKeys
+     * @return array
+     */
+    function arrayGroupBy($key, $data, $wantedKeys = [], $reverseWantedKeys = false)
+    {
+        $result = array();
+
+        foreach ($data as $val) {
+            if (array_key_exists($key, $val)) {
+                $newVal = $val;
+                if (is_array($wantedKeys) && count($wantedKeys)) {
+                    if (!($reverseWantedKeys === true)) {
+                        $newVal = [];
+                    }
+                    foreach ($wantedKeys as $wantedKey) {
+                        if (array_key_exists($wantedKey, $val)) {
+                            if ($reverseWantedKeys === true) {
+                                unset($newVal[$wantedKey]);
+                            } else {
+                                $newVal[$wantedKey] = $val[$wantedKey];
+                            }
+                        }
+                    }
+                }
+                $result[$val[$key]][] = $newVal;
+            } else {
+                $result[""][] = $val;
+            }
+        }
+
+        return $result;
+    }
+
+    /**
      * @param $array
      * @param $key
      * @param mixed|null $value

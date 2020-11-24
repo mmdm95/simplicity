@@ -189,6 +189,8 @@ data/draft/*
 vendor/*
 !vendor/simplicity-framework
 !vendor/simplicity-framework/*
+!vendor/simple-php-router
+!vendor/simple-php-router/*
 resource/*
 !resource/.keep
 .env
@@ -196,3 +198,4 @@ resource/*
 node_modules
 build/*
 !build/manifest.json
+public/js/variables.js
