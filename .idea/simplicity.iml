@@ -9,6 +9,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/aura/sql" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/aura/sqlquery" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/fzaninotto/faker" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/graham-campbell/result-type" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/jaybizzle/crawler-detect" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/jenssegers/agent" />

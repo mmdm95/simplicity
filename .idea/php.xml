@@ -69,6 +69,7 @@
       <path value="$PROJECT_DIR$/vendor/simple-php-router/src" />
       <path value="$PROJECT_DIR$/vendor/simple-php-router/.idea" />
       <path value="$PROJECT_DIR$/vendor/simple-php-router/tests" />
+      <path value="$PROJECT_DIR$/vendor/fzaninotto/faker" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />
