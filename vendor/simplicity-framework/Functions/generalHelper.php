@@ -152,7 +152,16 @@ if (!function_exists('e')) {
     }
 }
 
-
+if (!function_exists('encode_html')) {
+    /**
+     * @param $string
+     * @return string
+     */
+    function encode_html($string): string
+    {
+        return htmlentities($string, ENT_QUOTES, 'UTF-8');
+    }
+}
 
 if (!function_exists('hexentities')) {
     /**
