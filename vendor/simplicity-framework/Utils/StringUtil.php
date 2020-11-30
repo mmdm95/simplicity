@@ -292,7 +292,7 @@ class StringUtil
      * @param string $delimiter
      * @return string
      */
-    public static function truncate_word(string $string, int $length, string $delimiter = '...'): string
+    public static function truncate_word(string $string, int $length, string $delimiter = '…'): string
     {
         // we don't want new lines in our preview
         $text_only_spaces = preg_replace('/\s+/', ' ', $string);
