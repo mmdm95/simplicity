@@ -17,6 +17,16 @@ class StringUtil
     /**
      * @var array
      */
+    private static $persian_decimal = array('&#1776;', '&#1777;', '&#1778;', '&#1779;', '&#1780;', '&#1781;', '&#1782;', '&#1783;', '&#1784;', '&#1785;');
+
+    /**
+     * @var array
+     */
+    private static $arabic_decimal = array('&#1632;', '&#1633;', '&#1634;', '&#1635;', '&#1636;', '&#1637;', '&#1638;', '&#1639;', '&#1640;', '&#1641;');
+
+    /**
+     * @var array
+     */
     private static $persian_numbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
 
     /**
@@ -191,6 +201,7 @@ class StringUtil
             if (is_string($str)) {
                 $str = str_replace(self::$english_numbers, self::$persian_numbers, $str);
                 $str = str_replace(self::$arabic_numbers, self::$persian_numbers, $str);
+                $str = str_replace(self::$arabic_decimal, self::$persian_numbers, $str);
             }
         } elseif (StringUtil::CONVERT_CHARACTERS & $convert_type || StringUtil::CONVERT_ALL & $convert_type) {
             if (is_array($str)) {
@@ -231,6 +242,7 @@ class StringUtil
             if (is_string($str)) {
                 $str = str_replace(self::$english_numbers, self::$arabic_numbers, $str);
                 $str = str_replace(self::$persian_numbers, self::$arabic_numbers, $str);
+                $str = str_replace(self::$persian_decimal, self::$arabic_numbers, $str);
             }
         } elseif (StringUtil::CONVERT_CHARACTERS & $convert_type || StringUtil::CONVERT_ALL & $convert_type) {
             if (is_array($str)) {
@@ -268,6 +280,8 @@ class StringUtil
         if (is_string($str)) {
             $str = str_replace(self::$arabic_numbers, self::$english_numbers, $str);
             $str = str_replace(self::$persian_numbers, self::$english_numbers, $str);
+            $str = str_replace(self::$persian_decimal, self::$english_numbers, $str);
+            $str = str_replace(self::$arabic_decimal, self::$english_numbers, $str);
         }
 
         return $str;
