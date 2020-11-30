@@ -155,7 +155,7 @@ if (!function_exists('cart')) {
     {
         if (!\container()->has(Cart::class)) {
             // cart class
-            \container()->set(Cart::class, function (Resolver $resolver) {
+            \container()->set(Cart::class, function (Container $resolver) {
                 $cookie = $resolver->get(Cookie::class);
                 return new Cart(\connector()->getPDO(), $cookie, 0, \config()->get('cart.structure'));
             });
