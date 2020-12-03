@@ -65,15 +65,15 @@ if (!function_exists('emitter')) {
 if (!function_exists('cryptographer')) {
     function cryptographer(): Crypt
     {
-        if (!\container()->has(Crypt::class)) {
+        if (!\container()->has('cryptographer/class')) {
             // crypt class
-            \container()->set(Crypt::class, function () {
+            \container()->set('cryptographer/class', function () {
                 return new Crypt(\config()->get('security.main_key'),
                     \config()->get('security.assured_key'));
             });
         }
 
-        return \container()->get(Crypt::class);
+        return \container()->get('cryptographer/class');
     }
 }
 

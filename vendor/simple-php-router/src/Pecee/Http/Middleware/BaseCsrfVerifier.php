@@ -77,10 +77,10 @@ class BaseCsrfVerifier implements IMiddleware
                 throw new TokenMismatchException('Invalid CSRF-token.');
             }
 
-        }
+            // Refresh existing token
+            $this->tokenProvider->refresh();
 
-        // Refresh existing token
-        $this->tokenProvider->refresh();
+        }
 
     }
 
