@@ -90,11 +90,11 @@ function csrf_token(): ?string
 
 /**
  * Get csrf-field
- * @param string|null $name
- * @return string|null
+ * @return string
  * @throws Exception
  */
-function csrf_field(string $name = null): ?string
+function csrf_field(): string
 {
-    return csrf()->getField($name, BaseCsrfVerifier::POST_KEY);
+    $token = csrf_token();
+    return '<input type="hidden" name="' . BaseCsrfVerifier::POST_KEY . '" value="' . $token . '">';
 }
