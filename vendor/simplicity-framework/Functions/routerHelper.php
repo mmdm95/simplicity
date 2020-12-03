@@ -91,7 +91,6 @@ function csrf_token(): ?string
 /**
  * Get csrf-field
  * @return string
- * @throws Exception
  */
 function csrf_field(): string
 {
