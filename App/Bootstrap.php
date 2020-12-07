@@ -266,24 +266,20 @@ class Bootstrap
     }
 
     /**
-     * @throws MethodNotFoundException
-     * @throws ParameterHasNoDefaultValueException
-     * @throws ServiceNotFoundException
-     * @throws ServiceNotInstantiableException
-     * @throws \ReflectionException
+     * Events
      */
     protected function defineEvents()
     {
-        // Read all events that defined by user
-        /**
-         * @var EventDefinition $event
-         */
-        $event = \container()->get(EventDefinition::class);
-        $closures = $event->closures();
-        $events = $event->events();
-
         // Define emitter to container
-        \container()->set(Emitter::class, function () use ($closures, $events) {
+        \container()->set(Emitter::class, function (Container $c) {
+            // Read all events that defined by user
+            /**
+             * @var EventDefinition $event
+             */
+            $event = $c->get(EventDefinition::class);
+            $closures = $event->closures();
+            $events = $event->events();
+
             return new Emitter($events, $closures);
         });
     }

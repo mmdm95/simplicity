@@ -49,9 +49,35 @@ interface ITemplateFactory extends IRenderer
     /**
      * Set middleware for current route
      *
-     * @param AbstractMiddleware $middleWare
+     * @param array|string $middleWares
      * @param array $parameters
      * @return static
      */
-    public function setMiddleWare(AbstractMiddleware $middleWare, array $parameters = []);
+    public function setMiddleWare($middleWares, array $parameters = []);
+
+    /**
+     * Check if any middleware is register
+     *
+     * @return bool
+     */
+    public function hasMiddleware(): bool;
+
+    /**
+     * Remove specific middleware
+     *
+     * @return static
+     */
+    public function removeMiddleware(string $middleware);
+    
+    /**
+     * Remove all middleware
+     *
+     * @return static
+     */
+    public function removeAllMiddlewares();
+
+    /**
+     * @return bool
+     */
+    public function middlewareResult(): bool;
 }

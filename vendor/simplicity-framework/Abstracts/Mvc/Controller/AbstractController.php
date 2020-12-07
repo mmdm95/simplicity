@@ -27,12 +27,12 @@ abstract class AbstractController implements ITemplateFactory, ITemplateRenderer
     }
 
     /**
-     * @var $layout string
+     * @var string $layout
      */
     protected $layout = '';
 
     /**
-     * @var $template string
+     * @var string $template
      */
     protected $template;
 
@@ -42,24 +42,19 @@ abstract class AbstractController implements ITemplateFactory, ITemplateRenderer
     protected $default_arguments = [];
 
     /**
-     * @var $middleware AbstractMiddleWare
+     * @var array $middlewares
      */
-    protected $middleware;
+    protected $middlewares = [];
 
     /**
-     * @var $middlewareParameters array
+     * @var array $middlewareParameters
      */
     protected $middlewareParameters;
 
     /**
-     * @var $middlewareLayout string
+     * @var AbstractMiddleware $middleware_bottleneck
      */
-    protected $middlewareLayout;
-
-    /**
-     * @var $middlewareTemplate string
-     */
-    protected $middlewareTemplate;
+    protected $middleware_bottleneck;
 
     /**
      * @var array $allowedExtensions
@@ -183,32 +178,61 @@ abstract class AbstractController implements ITemplateFactory, ITemplateRenderer
     }
 
     /**
-     * Set middleware for current route
-     *
-     * @param AbstractMiddleware $middleWare
-     * @param $parameters
-     * @return static
+     * {@inheritdoc}
      */
-    public function setMiddleWare(AbstractMiddleware $middleWare, array $parameters = [])
+    public function setMiddleWare($middleWares, array $parameters = [])
     {
-        if ($middleWare instanceof AbstractMiddleware) {
-            $this->middleware = $middleWare;
-            $this->middlewareParameters = $parameters;
+        if (\is_array($middleWares)) {
+            foreach ($middleWares as $middleWare) {
+                if (!\in_array($middleWare, $this->middlewares)) {
+                    $this->middlewares[] = $middleWare;
+                }
+            }
+        } elseif (\is_string($middleWares)) {
+            if (!\in_array($middleWare, $this->middlewares)) {
+                $this->middlewares[] = $middleWares;
+            }
+        }
+        $this->middlewareParameters = $parameters;
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeMiddleware(string $middleware)
+    {
+        if (isset($this->middlewares[$middleware])) {
+            unset($this->middlewares[$middleware]);
         }
         return $this;
     }
 
     /**
-     * Check if any middleware is register
-     *
-     * @return bool
+     * {@inheritdoc}
+     */
+    public function removeAllMiddlewares()
+    {
+        $this->middlewares = [];
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
      */
     public function hasMiddleware(): bool
     {
-        if ($this->middleware instanceof AbstractMiddleware) {
-            return true;
-        }
-        return false;
+        return \count($this->middlewares);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function middlewareResult(): bool
+    {
+        $this->makeMiddlewareNested();
+        if (!$this->hasMiddleware()) return true;
+        return $this->middleware_bottleneck->handle($this->request);
     }
 
     /**
@@ -236,7 +260,7 @@ abstract class AbstractController implements ITemplateFactory, ITemplateRenderer
     {
         $arguments = array_merge_recursive($this->default_arguments, $arguments);
 
-        $allow = !$this->hasMiddleware() ? true : $this->middleware->handle(...$this->middlewareParameters);
+        $allow = !$this->hasMiddleware() ? true : $this->middlewareResult();
         if ($allow) {
             // Check if want json string
             if (true === $this->is_json) {
@@ -318,13 +342,26 @@ abstract class AbstractController implements ITemplateFactory, ITemplateRenderer
     }
 
     /**
-     * Remove all middleware
-     *
-     * @return AbstractController
+     * Make all middleware inside each other to check them by calling one of them
      */
-    protected function removeMiddleware(): AbstractController
+    protected function makeMiddlewareNested()
     {
-        $this->middleware = null;
-        return $this;
+        if ($this->hasMiddleware()) {
+            $main_middleware = $this->middlewares[0];
+            $middleware_collection =\ array_diff([$main_middleware], $this->middlewares);
+            $this->middleware_bottleneck = \container()->get($main_middleware);
+            if ($this->middleware_bottleneck instanceof AbstractMiddleware) {
+                foreach ($middleware_collection as $middleware) {
+                    $newMiddleware = \container()->get($middleware);
+                    if ($newMiddleware instanceof AbstractMiddleware) {
+                        $this->middleware_bottleneck->linkWith($middleware);
+                    } else {
+                        $this->removeMiddleware($middleware);
+                    }
+                }
+            } else {
+                $this->removeAllMiddlewares();
+            }
+        }
     }
 }

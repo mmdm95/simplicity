@@ -182,10 +182,10 @@ fabric.properties
 # End of https://www.toptal.com/developers/gitignore/api/phpstorm
 
 # Simplicity gitignore
-data/cache/*
-!data/cache/.keep
-data/draft/*
-!data/draft/.keep
+Data/Cache/*
+!Data/Cache/.keep
+Data/Drafts/*
+!Data/Drafts/.keep
 vendor/*
 !vendor/simplicity-framework
 !vendor/simplicity-framework/*
