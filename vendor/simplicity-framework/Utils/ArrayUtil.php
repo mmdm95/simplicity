@@ -221,7 +221,7 @@ class ArrayUtil
         $result = true;
         $last = array_shift($keys);
         if (!isset($array[$last])) $result = false;
-        if ((bool)$is_null_ok && isset($array[$last]) && is_null($array[$last])) {
+        if ((bool)$is_null_ok && is_null($array[$last])) {
             $result = true;
         }
         return $result;
