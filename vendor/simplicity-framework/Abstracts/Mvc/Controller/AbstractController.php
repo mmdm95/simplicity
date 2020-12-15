@@ -304,7 +304,7 @@ abstract class AbstractController implements ITemplateFactory, ITemplateRenderer
             throw new ControllerException('Not found page must have a template to show! Please add it here or in router config.');
         }
         $this->setTemplate(!empty($template) ? $template : (!empty($routerConfig['notfound_route']['template']) ? $routerConfig['notfound_route']['template'] : null));
-        $this->removeMiddleware()->isJson(false);
+        $this->removeAllMiddlewares()->isJson(false);
 
         header_remove("Content-Type");
         \response()->httpCode(404)->header('HTTP/1.1 404 Not Found');
@@ -334,7 +334,7 @@ abstract class AbstractController implements ITemplateFactory, ITemplateRenderer
             throw new ControllerException('Not found page must have a template to show! Please add it here or in router config.');
         }
         $this->setTemplate(!empty($template) ? $template : (!empty($routerConfig['error_route']['template']) ? $routerConfig['error_route']['template'] : null));
-        $this->removeMiddleware()->isJson(false);
+        $this->removeAllMiddlewares()->isJson(false);
 
         header_remove("Content-Type");
         \response()->httpCode(500)->header('HTTP/1.1 500 Internal Server Error');
