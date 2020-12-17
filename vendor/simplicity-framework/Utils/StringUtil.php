@@ -322,10 +322,10 @@ class StringUtil
 
     /**
      * @see https://stackoverflow.com/a/2955878/12154893
-     * @param string $string
+     * @param string $text
      * @return string
      */
-    public static function slugify(string $string): string
+    public static function slugify(string $text): string
     {
         // replace non letter or digits by -
         $text = preg_replace('~[^\pL\d]+~u', '-', $text);
