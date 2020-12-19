@@ -49,12 +49,12 @@ abstract class AbstractController implements ITemplateFactory, ITemplateRenderer
     /**
      * @var array $middlewareParameters
      */
-    protected $middlewareParameters;
+    private $middlewareParameters = [];
 
     /**
      * @var AbstractMiddleware $middleware_bottleneck
      */
-    protected $middleware_bottleneck;
+    private $middleware_bottleneck;
 
     /**
      * @var array $allowedExtensions
@@ -180,7 +180,7 @@ abstract class AbstractController implements ITemplateFactory, ITemplateRenderer
     /**
      * {@inheritdoc}
      */
-    public function setMiddleWare($middleWares, array $parameters = [])
+    public function setMiddleWare($middleWares, ?array $parameters = null)
     {
         if (\is_array($middleWares)) {
             foreach ($middleWares as $middleWare) {
@@ -193,7 +193,9 @@ abstract class AbstractController implements ITemplateFactory, ITemplateRenderer
                 $this->middlewares[] = $middleWares;
             }
         }
-        $this->middlewareParameters = $parameters;
+        if (!is_null($parameters)) {
+            $this->middlewareParameters = $parameters;
+        }
         return $this;
     }
 
@@ -344,11 +346,11 @@ abstract class AbstractController implements ITemplateFactory, ITemplateRenderer
     /**
      * Make all middleware inside each other to check them by calling one of them
      */
-    protected function makeMiddlewareNested()
+    private function makeMiddlewareNested()
     {
         if ($this->hasMiddleware()) {
             $main_middleware = $this->middlewares[0];
-            $middleware_collection =\ array_diff([$main_middleware], $this->middlewares);
+            $middleware_collection = \ array_diff([$main_middleware], $this->middlewares);
             $this->middleware_bottleneck = \container()->get($main_middleware);
             if ($this->middleware_bottleneck instanceof AbstractMiddleware) {
                 foreach ($middleware_collection as $middleware) {

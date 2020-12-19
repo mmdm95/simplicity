@@ -50,10 +50,10 @@ interface ITemplateFactory extends IRenderer
      * Set middleware for current route
      *
      * @param array|string $middleWares
-     * @param array $parameters
+     * @param array|null $parameters
      * @return static
      */
-    public function setMiddleWare($middleWares, array $parameters = []);
+    public function setMiddleWare($middleWares, ?array $parameters = null);
 
     /**
      * Check if any middleware is register
@@ -68,7 +68,7 @@ interface ITemplateFactory extends IRenderer
      * @return static
      */
     public function removeMiddleware(string $middleware);
-    
+
     /**
      * Remove all middleware
      *
