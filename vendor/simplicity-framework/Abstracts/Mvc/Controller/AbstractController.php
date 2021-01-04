@@ -260,7 +260,7 @@ abstract class AbstractController implements ITemplateFactory, ITemplateRenderer
      */
     public function render(array $arguments = [], $middlewareErrorCallback = null): string
     {
-        $arguments = array_merge_recursive($this->default_arguments, $arguments);
+        $arguments = array_replace_recursive($this->default_arguments, $arguments);
 
         $allow = !$this->hasMiddleware() ? true : $this->middlewareResult();
         if ($allow) {
